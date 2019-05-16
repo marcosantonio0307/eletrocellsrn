@@ -1,0 +1,25 @@
+<div>
+	<table class="table table-bordered">
+		<thead>
+			<th>SKU</th>
+			<th>Nome</th>
+			<th>Quantidade</th>
+			<th>Custo</th>
+			<th>Preço</th>
+			<th>Tipo</th>
+		</thead>
+		<% @products.each do |product| %>
+		<tbody>
+			<tr>
+				<td><%= product.sku %></td>
+				<td><%= product.name %></td>
+				<td><%= product.amount %></td>
+				<td><%= number_to_currency product.cost %></td>
+				<td><%= number_to_currency product.price %></td>
+				<td><%= product.category %></td>
+				<td><%= link_to 'Ver', product_path(product), class: 'btn btn-primary' %></td>
+			</tr>
+		</tbody>
+		<% end %>
+	</table>
+</div>

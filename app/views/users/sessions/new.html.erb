@@ -1,0 +1,34 @@
+<div class="login_area">
+  <div class="tela_login">
+
+      <%= image_tag "login.png", :width => "80px", :height => "80px" %>
+
+      <h2>Entrar  </h2>
+  </div>
+
+  <div class="form_login">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <div class="field">
+          <%= f.label :usuario %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :senha %><br />
+          <%= f.password_field :password, autocomplete: "current-password" %>
+        </div>
+
+        <% if devise_mapping.rememberable? %>
+          <div class="field">
+            <%= f.check_box :remember_me %>
+            <%= f.label :lembre_me %>
+          </div>
+        <% end %>
+
+        <div>
+          <p style=" margin-top: 1em; margin-left: 5em;"><%= f.submit "Entrar", class: "btn btn-success" %></p>
+        </div>
+      <% end %>
+
+  </div>
+</div>

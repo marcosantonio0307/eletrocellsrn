@@ -1,0 +1,280 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+
+
+* {
+	padding: 0px;
+	margin: 0px;
+}
+
+
+body {
+	background: #fff5ee;
+	font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+/* Barra de Menus DropDown */
+
+.menus {
+	margin-top: 0;
+	width: 100%;
+	height: 40px;
+	background: #D72229;
+	font-family: "Arial";
+	padding-left: 15%;
+}
+
+.menus ul {
+	list-style: none;
+	position: relative;
+}
+
+.menus ul li {
+	width: 150px;
+	float: left;
+}
+
+.menus a {
+	padding: 10px 15px;
+	display: block;
+	text-decoration: none;
+	text-align: center;
+	background: #D72229;
+	color: white;
+}
+
+.menus ul ul {
+	position: absolute;
+	visibility: hidden;
+}
+
+.menus ul li:hover ul {
+	visibility: visible;
+}
+
+.menus a:hover {
+	background: #dcdcdc;
+	color: #222;
+}
+
+.menus ul ul li {
+	float: none;
+	border-bottom: solid 1px #ccc;
+}
+
+.menus ul ul li a {
+	background: #6E6E6E;
+}
+
+label[for="bt_menu"] {
+	padding: 5px;
+	background: #222;
+	color: white;
+	font-family: 'Arial';
+	text-align: center;
+	font-size: 30px;
+	cursor: pointer;
+	width: 50px;
+	height: 50px;
+}
+
+#bt_menu {
+	display: none;
+}
+
+label[for="bt_menu"] {
+	display: none;
+}
+
+@media(max-width: 800px) {
+
+	#barra_de_logo {
+		display: none;
+	}
+
+	.menus {
+		margin-top: 5px;
+		margin-left: -100%;
+		transition: all .4s;
+		padding-left: 0px;
+	}
+
+	.menus ul li {
+		width: 100%;
+		float: none;
+	}
+
+	.menus ul ul {
+		position: static;
+		overflow: hidden;
+		max-height: 0;
+		transition: all .4s;
+	}
+
+	.menus ul li:hover ul {
+		height: auto;
+		max-height: 200px;
+	}
+
+	#bt_menu:checked ~ .menus {
+		margin-left: 0;
+	}
+
+	label[for="bt_menu"] {
+	display: block;
+	}
+}
+
+/* --------------------------------- */
+
+/* Area da Logo */
+
+#barra_de_logo {
+	width: 100%;
+	height: 100px;
+	background-image: linear-gradient(to top, white,  #D72229);
+	color: white;
+	margin-bottom: 0;
+}
+
+.logo {
+	float: left;
+	text-align: center;
+	padding: 0 0.7em;
+	height: 100%;
+	padding-left: 30%;
+	margin: auto 0;
+}
+
+.apple {
+	float: left;
+	text-align: center;
+}
+
+.apple a {
+	float: left;
+	text-align: center;
+	padding-top: 4px;
+	padding-right: 2em;
+	padding-bottom: 0.4em;	
+}
+
+/* ------------------------------------ */
+
+/* area de login */
+
+.login_area {
+	width: 35%;
+	margin: 0 auto;
+}
+
+.tela_login {
+	margin: 1em auto;
+	padding-left: 40%;
+}
+
+.form_login {
+	margin: 0px auto;
+	padding-left: 25%;
+}
+
+.info-login {
+	width: 22em;
+	height: 3em;
+	float: right;
+	padding: 0.5em 0.5em;
+}
+
+.current_user {
+	margin-left: 0.5em;
+	margin-right: 2em;
+	color: white;
+	font-size: 1.2em;
+}
+
+/* ------------------------------- */
+
+.container-primary {	
+	width: 90%;
+	min-height: 30em;
+	margin: 4em auto;
+}
+
+.home_bottons {
+	width: 70%;
+	margin: 5em auto;
+	padding-left: 3em;
+}
+
+.home_bottons a {
+	padding: 0 3em;
+	margin-right: 6em;
+	text-decoration: none;
+	color: black;
+}
+
+.footer {
+	width: 100%;
+	height: 75px;
+	background: #222;
+	border: solid 1px;
+	text-align: center;
+	color: white;
+	float: left;
+}
+
+.ignore-css {
+	padding: 0;
+	margin: 0;
+
+}
+
+.label {
+	text-align: center;
+	font-size: 1.4em;
+	float: left;
+	width: 100%;
+}
+
+.label span {
+	background: #D72229;
+	padding: 0.2em 2em;	
+}
+
+.form-new {
+	float: left;
+	width: 60%;
+	margin: 1em 20%;
+	margin-bottom: 5em;
+}
+
+.options {
+	float: left;
+	width: 60%;
+	margin: 0.5em 20%;
+}
+
+.options span {
+	float: left;
+	margin-right: 0.5em;
+}
+
+.search {
+	margin-top: 4em;
+}
+
+

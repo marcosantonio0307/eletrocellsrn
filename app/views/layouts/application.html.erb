@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cesarcell - Loja 1</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+    <div id="barra_de_logo">
+
+      <div style="float: left; margin: 0.5em 2em; font-size: 1.3em;">
+        <p>Loja 01</p>
+      </div>
+
+      <p class="logo"><%= image_tag "logo.png", :width => "250px", :height => "100px"%></p>
+
+      <div class="info-login">
+        <% if signed_in? %>
+          <%= image_tag "login.png", :width => "30px", :height => "30px" %>
+          <span class="current_user"><%= current_user.email%></span>
+          <%= link_to 'Sair', destroy_user_session_path, method: :delete, class: "btn btn-default" %></p>
+        <% end %>
+      </div>
+    </div>
+
+    <input type="checkbox" id="bt_menu">
+    <label for="bt_menu">&#9776;</label>
+
+    <nav class="menus">
+      <ul>
+        <div class="apple">
+          <%= link_to (image_tag 'apple.png', :width => "35px", :height => "30px"), root_path %>
+        </div>
+
+        <li><a href="">Clientes</a>
+          <ul>
+            <li><%= link_to "Novo Cliente", new_client_path %></li>
+            <li><%= link_to "Meus Clientes", clients_path %></li>
+          </ul>
+        </li>
+        <li><a href="">Caixa</a>
+          <ul>
+            <li><a href="">Nova Venda</a></li>
+            <li><a href="">Nova Despesa</a></li>
+          </ul>
+        </li>
+        <li><a href="">Estoque</a>
+          <ul>
+            <li><%= link_to 'Novo Produto', new_product_path %></li>
+            <li><%= link_to 'Celulares', products_cell_path %></li>
+            <li><%= link_to 'Eletrônicos', products_eletronic_path %></li>
+            <li><%= link_to 'Peças', products_part_path %></li>
+            <li><%= link_to 'Acessórios', products_accessory_path %></li>
+            <li><%= link_to 'Todos Produtos', products_path %></li>
+          </ul>
+        </li>
+        <li><a href="">Ordens de Serviço</a></li>
+        <li><a href="">Relatorios</a></li>
+        <li><a href="">Usuários</a></li>
+      </ul>
+
+    </nav>
+
+    <div class="container-primary">
+
+      <% if flash[:notice] %>
+        <div class="alert alert-info" role="alert">
+          <%= flash[:notice] %>
+        </div>
+      <% end %>
+      <%= yield %>
+    </div>
+
+    <footer class="footer">
+      <p style="line-height: 50px; font-size: 1.5em; margin-bottom: 0px">Loja 01 - Cesar Cell</p>
+      <p>&copy; Todos os direitos reservados</p>
+    </footer>
+
+  </body>
+</html>
