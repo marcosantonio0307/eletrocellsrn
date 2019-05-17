@@ -15,7 +15,7 @@ class ClientsController < ApplicationController
 		if @client.save
 			redirect_to client_path(@client), notice: 'Cliente Cadastrado com Sucesso!'
 		else
-			render :new
+			redirect_to new_client_path, notice: 'Campos Obrigatórios não Preenchidos!'
 		end
 	end
 

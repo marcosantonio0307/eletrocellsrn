@@ -45,7 +45,7 @@ class ProductsController < ApplicationController
 		if @product.save
 			redirect_to product_path(@product), notice: 'Produto  Criado com Sucesso!'
 		else
-			render :new
+			redirect_to new_product_path, notice: 'Campos Obrigatórios não preenchidos!'
 		end
 	end
 
