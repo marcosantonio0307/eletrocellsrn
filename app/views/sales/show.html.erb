@@ -1,0 +1,26 @@
+<style type="text/css">
+	#hide {
+		visibility: hidden;
+	}
+</style>
+
+<div class="label">
+	<span>Venda Nº <%= @sale.id %></span>
+</div>
+
+<div class="options">
+	<span><%= link_to 'Voltar', sales_path, class: 'btn btn-default' %></span>
+	<span><%= link_to 'Editar', edit_sale_path(@sale), class: 'btn btn-warning' %></span>
+	<span><%= link_to 'Excluir', sale_path(@sale), method: :delete, class: 'btn btn-danger', data:{confirm: 'Deseja Excluir a Venda?'} %></span>
+</div>
+
+<div class="form-new">
+
+	<div class="form-group">
+		<%= label_tag :cliente %>
+		<%= text_field_tag :client, @sale.client.name, class: 'form-control', :disabled=>true %>
+	</div><br>
+
+	<%= render 'items' %>
+
+</div>

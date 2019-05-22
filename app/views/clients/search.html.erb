@@ -3,7 +3,7 @@
 </div>
 
 <%= form_tag search_clients_path, method: :get, class: 'navbar-form navbar-right' do %>
-	<div class="search">
+	<div>
 		<%= link_to 'Voltar', clients_path, class: 'btn btn-default' %>
 		<%= text_field_tag :name, @name, class: 'form-control' %>
 		<%= button_to 'Buscar', nil, class: 'btn btn-success' %>

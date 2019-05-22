@@ -1,0 +1,30 @@
+<div class="form-new">
+
+	<div class="form-group">
+	<%= label_tag :sku %>
+	<%= text_field_tag :sku, @item.product.sku, :disabled=>true, class: 'form-control' %>
+	</div>
+
+	<div class="form-group">
+	<%= label_tag :produto %>
+	<%= text_field_tag :product, @item.product.name, :disabled=>true, class: 'form-control' %>
+	</div>
+
+	<div class="form-group">
+		<%= label_tag :price %>
+		<%= text_field_tag :price, number_to_currency(@item.product.price), :disabled=>true, class: 'form-control' %>
+	</div>
+
+
+	<%= form_tag add_sale_item_path(@sale, @item) do %>
+		<div class="form-group">
+			<%= label_tag :quantidade %>
+			<%= number_field_tag :amount, class: 'form-control' %>
+		</div>
+
+		<div class="form-group">
+			<%= button_to :incluir, nil, class: 'btn btn-success' %>
+		</div>
+	<% end %>
+</div>
+

@@ -248,6 +248,7 @@ label[for="bt_menu"] {
 	font-size: 1.4em;
 	float: left;
 	width: 100%;
+	margin-bottom: 3em;
 }
 
 .label span {
@@ -273,8 +274,6 @@ label[for="bt_menu"] {
 	margin-right: 0.5em;
 }
 
-.search {
-	margin-top: 4em;
+.items-sales {
+	width: 50%;
 }
-
-

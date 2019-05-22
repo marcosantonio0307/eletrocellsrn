@@ -1,0 +1,23 @@
+<div>
+	<table class="table table-bordered">
+		<thead>
+			<th>Venda</th>
+			<th>Data</th>
+			<th>Cliente</th>
+			<th>Vendedor</th>
+			<th>Total</th>
+		</thead>
+		<% @sales.each do |sale| %>
+		<tbody>
+			<tr>
+				<td><%= sale.id %></td>
+				<td><%= sale.created_at.strftime("%d/%m/%Y") %></td>
+				<td><%= sale.client.name %></td>
+				<td><%= sale.user.email %></td>
+				<td><%= number_to_currency sale.total %></td>
+				<td><%= link_to 'Exibir', sale_path(sale), class: 'btn btn-primary' %></td>
+			</tr>
+		</tbody>
+		<% end %>
+	</table>
+</div>

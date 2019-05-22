@@ -36,16 +36,26 @@ class ProductsController < ApplicationController
 	
 	def new
 		@product = Product.new
+		@message = ''
 	end
 
 	def create
+		@message = ''
 		values = params.require(:product).permit!
-		@product = Product.create values
+		sku_registred = Product.all.map{|p| p.sku}
+		@product = Product.new values
 
-		if @product.save
-			redirect_to product_path(@product), notice: 'Produto  Criado com Sucesso!'
+		if sku_registred.include? @product.sku
+			@message = 'SKU já Cadastrado!'
+			render :new
 		else
-			redirect_to new_product_path, notice: 'Campos Obrigatórios não preenchidos!'
+			@product.save
+			if @product.save
+				redirect_to products_path, notice: 'Produto  Criado com Sucesso!'
+			else
+				@message = 'Campos Obrigatórios não Preenchidos!'
+				render :new
+			end
 		end
 	end
 
