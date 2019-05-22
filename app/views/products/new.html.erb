@@ -2,4 +2,10 @@
 	<span>Novo Produto</span>
 </div>
 
+<% if @message != '' %>
+	<div class="alert alert-danger" role="alert" style="float: left;">
+		<%= @message %>
+	</div>
+<% end %>
+
 <%= render 'form_product' %>

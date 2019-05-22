@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  client: one
+  user: one
+  total: 9.99
+
+two:
+  client: two
+  user: two
+  total: 9.99

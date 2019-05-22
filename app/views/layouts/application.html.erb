@@ -45,7 +45,7 @@
         </li>
         <li><a href="">Caixa</a>
           <ul>
-            <li><a href="">Nova Venda</a></li>
+            <li><%= link_to 'Nova Venda', new_sale_path, data:{confirm: 'Deseja Efetuar uma Nova Venda?'} %></li>
             <li><a href="">Nova Despesa</a></li>
           </ul>
         </li>
@@ -60,7 +60,11 @@
           </ul>
         </li>
         <li><a href="">Ordens de Serviço</a></li>
-        <li><a href="">Relatorios</a></li>
+        <li><a href="">Relatorios</a>
+          <ul>
+            <li><%= link_to 'Minhas Vendas', sales_path %></li>
+          </ul>
+        </li>
         <li><a href="">Usuários</a></li>
       </ul>
 

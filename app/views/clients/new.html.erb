@@ -2,4 +2,10 @@
 	<span>Novo Cliente</span>
 </div>
 
+<% if @message != '' %>
+	<div class="alert alert-danger" role="alert" style="float: left;">
+		<%= @message %>
+	</div>
+<% end %>
+
 <%= render 'form_client' %>
