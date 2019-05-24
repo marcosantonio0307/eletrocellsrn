@@ -44,7 +44,7 @@ class SalesController < ApplicationController
 
 	def update
 		@sale = Sale.find(params[:id])
-		redirect_to sales_path, notice: 'Venda Salva com Sucesso!'
+		redirect_to sale_path(@sale), notice: 'Venda Salva com Sucesso!'
 	end
 
 	def destroy

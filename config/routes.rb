@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :clients, only:[:index, :new, :create, :edit, :update, :destroy]
   resources :products, only:[:index, :new, :create, :edit, :update, :destroy]
+  resources :expenses, only:[:index, :new, :create, :edit, :update, :destroy]
 
   resources :sales do
   	resources :items
@@ -22,6 +23,9 @@ Rails.application.routes.draw do
   post 'sales/:id/select' => 'sales#select', as: :select_sale
 
   post 'sales/:sale_id/items/:id' => 'items#add', as: :add_sale_item
+
+  get 'expenses/advance' => 'expenses#advance', as: :advance_expense
+  get 'expenses/devolution' => 'expenses#devolution', as: :devolution_expense
 
   root 'home#index'
 

@@ -13,23 +13,58 @@ class ItemsController < ApplicationController
 	end
 
 	def add
-		@sale = Sale.find(params[:sale_id])
+		@sale = Sale.find(params[:sale_id]) #set
 		@item = Item.find(params[:id])
 
-		amount = params[:amount]
+		amount = params[:amount] 
 		amount = amount.to_i
 		unity = @item.product.price
-		price = unity * amount
-		total = @sale.total
-		total += price
+		discount = params[:discount]
+		discount = discount.to_f
 
-		@sale.update(total: total)
-		@item.update(amount: amount, price: price)
+		if current_user.email == 'cesar@admin.com'
+			discount_value = unity * (discount/100)
+			price = unity - discount_value
+			price = price * amount
+			total = @sale.total
+			total += price
 
-		new_amount = @item.product.amount - amount
-		@item.product.update(amount:  new_amount)
+			@sale.update(total: total)
+			@item.update(amount: amount, price: price, discount: discount)
 
-		redirect_to edit_sale_path(@sale)
+			new_amount = @item.product.amount - amount
+			@item.product.update(amount:  new_amount)
+
+			redirect_to edit_sale_path(@sale)
+		else
+			if discount < 11
+				discount_value = unity * (discount/100)
+				price = unity - discount_value
+				price = price * amount
+				total = @sale.total
+				total += price
+
+				@sale.update(total: total)
+				@item.update(amount: amount, price: price, discount: discount)
+
+				new_amount = @item.product.amount - amount
+				@item.product.update(amount:  new_amount)
+
+				redirect_to edit_sale_path(@sale)
+			else
+				price = unity * amount
+				total = @sale.total
+				total += price
+
+				@sale.update(total: total)
+				@item.update(amount: amount, price: price, discount: 0)
+
+				new_amount = @item.product.amount - amount
+				@item.product.update(amount:  new_amount)
+
+				redirect_to edit_sale_path(@sale), notice: 'Desconto não aplicado! Maior do que o Permitido!'
+			end
+		end
 	end
 
 	def destroy
@@ -37,13 +72,17 @@ class ItemsController < ApplicationController
 		id = params[:id]
 		item = Item.find(id)
 
-		amount = item.amount #retorna a quantidade do produto para o estoque quando remove-o da lista
-		new_amount = item.product.amount + amount
-		item.product.update(amount: new_amount)
+		if item.amount != nil
+			amount = item.amount #retorna a quantidade do produto para o estoque quando remove-o da lista
+			new_amount = item.product.amount + amount
+			item.product.update(amount: new_amount)
+		end
 
-		price = item.price #atualiza o valor da venda sem o item removido
-		new_total = @sale.total - price
-		@sale.update(total: new_total)
+		if item.price != nil
+			price = item.price #atualiza o valor da venda sem o item removido
+			new_total = @sale.total - price
+			@sale.update(total: new_total)
+		end
 
 		Item.destroy id
 		redirect_to edit_sale_path(@sale)
