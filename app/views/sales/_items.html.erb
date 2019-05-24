@@ -4,6 +4,7 @@
 			<th>Produto</th>
 			<th>Quatidade</th>
 			<th>Valor</th>
+			<th>Desconto %</th>
 			<th>Total</th>
 		</thead>
 		<% @total = 0 %>
@@ -13,6 +14,7 @@
 					<td><%= item.product.name %></td>
 					<td><%= item.amount %></td>
 					<td><%= number_to_currency item.product.price %></td>
+					<td><%= item.discount %>%	</td>
 					<td><%= number_to_currency item.price %></td>
 					<td id="hide"><%= button_to 'Remover', sale_item_path(@sale, item), method: :delete, class: 'btn btn-danger' %></td>
 				</tr>

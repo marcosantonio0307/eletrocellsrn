@@ -258,15 +258,15 @@ label[for="bt_menu"] {
 
 .form-new {
 	float: left;
-	width: 60%;
-	margin: 1em 20%;
+	width: 70%;
+	margin: 1em 16%;
 	margin-bottom: 5em;
 }
 
 .options {
 	float: left;
-	width: 60%;
-	margin: 0.5em 20%;
+	width: 80%;
+	margin: 0.5em 16%;
 }
 
 .options span {
@@ -276,4 +276,11 @@ label[for="bt_menu"] {
 
 .items-sales {
 	width: 50%;
+}
+
+.sale {
+	float: left;
+	width: 80%;
+	margin: 1em 11%;
+	margin-bottom: 5em;
 }

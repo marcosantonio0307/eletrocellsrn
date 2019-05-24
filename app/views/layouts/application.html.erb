@@ -46,7 +46,9 @@
         <li><a href="">Caixa</a>
           <ul>
             <li><%= link_to 'Nova Venda', new_sale_path, data:{confirm: 'Deseja Efetuar uma Nova Venda?'} %></li>
-            <li><a href="">Nova Despesa</a></li>
+            <li><%= link_to 'Nova Despesa', new_expense_path %></li>
+            <li><%= link_to 'Vale Funcionario', advance_expense_path %></li>
+            <li><%= link_to 'Devolução', devolution_expense_path %></li>
           </ul>
         </li>
         <li><a href="">Estoque</a>

@@ -1,0 +1,21 @@
+<table class="table table-bordered">
+	<thead>
+		<th>Data</th>
+		<th>Tipo</th>
+		<th>Descrição</th>
+		<th>Valor</th>
+		<th>Usuario</th>
+	</thead>
+
+	<tbody>
+		<% @expenses.each do |expense| %>
+		<tr>
+			<td><%= expense.created_at.strftime("%d/%m/%Y") %></td>
+			<td><%= expense.category %></td>
+			<td><%= expense.description %></td>
+			<td><%= number_to_currency expense.total %></td>
+			<td><%= expense.user.email %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
