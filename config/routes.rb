@@ -26,6 +26,10 @@ Rails.application.routes.draw do
 
   get 'expenses/advance' => 'expenses#advance', as: :advance_expense
   get 'expenses/devolution' => 'expenses#devolution', as: :devolution_expense
+  get 'expenses/expenses' => 'expenses#expenses'
+  get 'expenses/advances' => 'expenses#advances'
+  get 'expenses/devolutions' => 'expenses#devolutions'
+  get 'expenses/:id' => 'expenses#show'
 
   root 'home#index'
 
