@@ -5,7 +5,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
@@ -40,7 +40,7 @@
         <li><a href="">Clientes</a>
           <ul>
             <li><%= link_to "Novo Cliente", new_client_path %></li>
-            <li><%= link_to "Meus Clientes", clients_path %></li>
+            <li><%= link_to "Clientes", clients_path %></li>
           </ul>
         </li>
         <li><a href="">Caixa</a>
@@ -49,8 +49,8 @@
             <li><%= link_to 'Nova Despesa', new_expense_path %></li>
             <li><%= link_to 'Vale Funcionario', advance_expense_path %></li>
             <li><%= link_to 'Devolução', devolution_expense_path %></li>
-            <li><%= link_to 'Minhas Vendas', sales_path %></li>
-            <li><%= link_to 'Minhas Despesas', expenses_path %></li>
+            <li><%= link_to 'Vendas', sales_path %></li>
+            <li><%= link_to 'Despesas', expenses_path %></li>
           </ul>
         </li>
         <li><a href="">Estoque</a>
@@ -66,7 +66,7 @@
         <li><a href="">Ordens de Serviço</a></li>
         <li><a href="">Relatorios</a>
           <ul>
-            <li><%= link_to 'Todas Vendas', sales_path %></li>
+            <li><%= link_to 'Todas Vendas', sales_sales_path %></li>
             <li><%= link_to 'Despesas', expenses_expenses_path %></li>
             <li><%= link_to 'Vales', expenses_advances_path %></li>
             <li><%= link_to 'Devoluções', expenses_devolutions_path %></li>

@@ -1,7 +1,14 @@
 class SalesController < ApplicationController
 
 	def index
-		@sales = Sale.all	
+		@sales = Sale.all
+		@report = false
+	end
+
+	def sales
+		@sales = Sale.all
+		@report = true
+		render :index
 	end
 
 	def new
@@ -45,6 +52,38 @@ class SalesController < ApplicationController
 	def update
 		@sale = Sale.find(params[:id])
 		redirect_to sale_path(@sale), notice: 'Venda Salva com Sucesso!'
+	end
+
+	def filter_date
+		@sales = Sale.all
+		@begin_date = params[:begin_date]
+		@end_date = params[:end_date]
+		filter = []
+
+		if @begin_date > @end_date
+			render :index
+		else
+			@sales.each do |sale|
+				if sale.created_at.strftime("%Y-%m-%d") == @begin_date
+					filter << sale
+				elsif sale.created_at.strftime("%Y-%m-%d") > @begin_date && sale.created_at.strftime("%Y-%m-%d") < @end_date
+					filter << sale
+				elsif sale.created_at.strftime("%Y-%m-%d") == @end_date
+					filter << sale
+				end
+			end
+			@sales = filter
+		end
+	end
+
+	def search
+		@name = params[:client]
+		client = Client.where "name like ?", "%#{@name}%"
+		if client.first != nil
+			@sales = Sale.where "client_id like ?", "%#{client.first.id}%"
+		else
+			@sales = []
+		end
 	end
 
 	def destroy

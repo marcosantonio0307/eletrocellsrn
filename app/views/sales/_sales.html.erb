@@ -1,0 +1,32 @@
+<table class="table table-bordered">
+	<thead>
+		<th>Venda</th>
+		<th>Data</th>
+		<th>Cliente</th>
+		<th>Vendedor</th>
+		<th>Total</th>
+	</thead>
+	<% @total = 0 %>
+	<% @sales.each do |sale| %>
+	<tbody>
+		<tr>
+			<td><%= sale.id %></td>
+			<td><%= sale.created_at.strftime("%d/%m/%Y") %></td>
+			<td><%= sale.client.name %></td>
+			<td><%= sale.user.email %></td>
+			<td><%= number_to_currency sale.total %></td>
+			<% if @report != true %>
+				<td><%= link_to 'Exibir', sale_path(sale), class: 'btn btn-primary' %></td>
+			<% end %>
+			<% @total += sale.total %>
+		</tr>
+	</tbody>
+	<% end %>
+</table>
+
+<% if @report == true %>
+	<div class="navbar navbar-right">
+		<%= label_tag :total %>
+		<%= text_field_tag :total, number_to_currency(@total) %>
+	</div>
+<% end %>

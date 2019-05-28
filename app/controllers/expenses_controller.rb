@@ -1,21 +1,24 @@
 class ExpensesController < ApplicationController
 
 	def expenses
-		@expenses = Expense.where(category: 'gerais')
+		@category = 'gerais'
+		@expenses = Expense.where(category: @category)
 		@report = true
 		@title = 'Despesas'
 		render :index
 	end
 
 	def advances
-		@expenses = Expense.where(category: 'vale funcionario')
+		@category = 'vale funcionario'
+		@expenses = Expense.where(category: @category)
 		@report = true
 		@title = 'Vales'
 		render :index
 	end
 
 	def devolutions
-		@expenses = Expense.where(category: 'devolucao')
+		@category = 'devolucao'
+		@expenses = Expense.where(category: @category)
 		@report = true
 		@title = 'Devoluções'
 		render :index
@@ -62,6 +65,35 @@ class ExpensesController < ApplicationController
 
 		@expense.update values
 		redirect_to expense_path(@expense), notice: 'Despesa Alterada com Sucesso!'
+	end
+
+	def filter_date
+		@category = params[:category]
+
+		if @category != ""
+			@expenses = Expense.where(category: @category)
+		else
+			@expenses = Expense.all
+		end
+
+		@begin_date = params[:begin_date]
+		@end_date = params[:end_date]
+		@filter = []
+
+		if @begin_date > @end_date
+			render :index
+		else
+			@expenses.each do |expense|
+				if expense.created_at.strftime("%Y-%m-%d") == @begin_date
+					@filter << expense
+				elsif expense.created_at.strftime("%Y-%m-%d") > @begin_date && expense.created_at.strftime("%Y-%m-%d") < @end_date
+					@filter << expense
+				elsif expense.created_at.strftime("%Y-%m-%d") == @end_date
+					@filter << expense
+				end
+			end
+			@expenses = @filter
+		end
 	end
 
 	def show
