@@ -193,10 +193,25 @@ label[for="bt_menu"] {
 }
 
 .info-login {
-	width: 22em;
+	width: 25em;
 	height: 3em;
 	float: right;
-	padding: 0.5em 0.5em;
+	padding: 0.5em 0.3em;
+}
+
+.info-login img {
+	float: right;
+	margin: 0;
+}
+
+.info-login span {
+	float: right;
+	margin-right: 1px;
+}
+
+.info-login a {
+	float: right;
+	margin-left: 8px;
 }
 
 .current_user {
@@ -254,6 +269,10 @@ label[for="bt_menu"] {
 .label span {
 	background: #D72229;
 	padding: 0.2em 2em;	
+}
+
+.label h4 {
+	color: #D72229;
 }
 
 .form-new {

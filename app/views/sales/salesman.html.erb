@@ -1,0 +1,10 @@
+<div class="label">
+	<span><%= @title %></span>
+	<h4>Vendas entre <%= @begin_date %> e <%= @end_date %></h4>
+</div>
+
+<div style="margin-bottom: 1em;">
+	<%= link_to 'Voltar', sales_select_salesman_path, class: 'btn btn-default' %>
+</div>
+
+<%= render 'sales' %>
