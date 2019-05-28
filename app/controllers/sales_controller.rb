@@ -3,11 +3,13 @@ class SalesController < ApplicationController
 	def index
 		@sales = Sale.all
 		@report = false
+		@title = 'Vendas'
 	end
 
 	def sales
 		@sales = Sale.all
 		@report = true
+		@title = 'Vendas'
 		render :index
 	end
 
@@ -58,6 +60,48 @@ class SalesController < ApplicationController
 		@sales = Sale.all
 		@begin_date = params[:begin_date]
 		@end_date = params[:end_date]
+		
+		filter(@sale, @begin_date, @end_date)
+	end
+
+	def search
+		@name = params[:client]
+		client = Client.where "name like ?", "%#{@name}%"
+		if client.first != nil
+			@sales = Sale.where "client_id like ?", "%#{client.first.id}%"
+		else
+			@sales = []
+		end
+	end
+
+	def salesman
+		id = params[:salesman]
+		salesman = User.where(id: id)
+		@sales = Sale.where(client_id: id)
+		@begin_date = params[:begin_date]
+		@end_date = params[:end_date]
+		@report = true
+		@title = "Vendedor #{salesman.first.email}"
+
+		filter(@sales, @begin_date, @end_date)
+	end
+
+	def destroy
+		id = params[:id]
+		Sale.destroy id
+		redirect_to sales_path, notice: 'Venda Excluída com Sucesso!'
+	end
+
+	def show
+		@sale = Sale.find(params[:id])
+		@items = Item.where(sale_id: @sale.id)
+	end
+end
+
+
+private
+
+	def filter(sales, begin_date, end_date)
 		filter = []
 
 		if @begin_date > @end_date
@@ -75,25 +119,3 @@ class SalesController < ApplicationController
 			@sales = filter
 		end
 	end
-
-	def search
-		@name = params[:client]
-		client = Client.where "name like ?", "%#{@name}%"
-		if client.first != nil
-			@sales = Sale.where "client_id like ?", "%#{client.first.id}%"
-		else
-			@sales = []
-		end
-	end
-
-	def destroy
-		id = params[:id]
-		Sale.destroy id
-		redirect_to sales_path, notice: 'Venda Excluída com Sucesso!'
-	end
-
-	def show
-		@sale = Sale.find(params[:id])
-		@items = Item.where(sale_id: @sale.id)
-	end
-end

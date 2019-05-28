@@ -21,9 +21,9 @@
 
       <div class="info-login">
         <% if signed_in? %>
-          <%= image_tag "login.png", :width => "30px", :height => "30px" %>
+          <%= link_to 'Sair', destroy_user_session_path, method: :delete, class: "btn btn-default" %>
           <span class="current_user"><%= current_user.email%></span>
-          <%= link_to 'Sair', destroy_user_session_path, method: :delete, class: "btn btn-default" %></p>
+          <%= image_tag "login.png", :width => "30px", :height => "30px" %>
         <% end %>
       </div>
     </div>
@@ -67,6 +67,7 @@
         <li><a href="">Relatorios</a>
           <ul>
             <li><%= link_to 'Todas Vendas', sales_sales_path %></li>
+             <li><%= link_to 'Por Vendedor', sales_select_salesman_path %></li>
             <li><%= link_to 'Despesas', expenses_expenses_path %></li>
             <li><%= link_to 'Vales', expenses_advances_path %></li>
             <li><%= link_to 'Devoluções', expenses_devolutions_path %></li>

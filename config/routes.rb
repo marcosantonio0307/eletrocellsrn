@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get 'sales/filter_date' => 'sales#filter_date'
   get 'sales/sales' => 'sales#sales'
   get 'sales/search' => 'sales#search'
+  get 'sales/select_salesman' => 'sales#select_salesman'
+  get 'sales/salesman' => 'sales#salesman'
 
   resources :sales do
   	resources :items
