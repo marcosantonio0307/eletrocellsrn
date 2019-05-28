@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   resources :products, only:[:index, :new, :create, :edit, :update, :destroy]
   resources :expenses, only:[:index, :new, :create, :edit, :update, :destroy]
 
+  get 'sales/filter_date' => 'sales#filter_date'
+  get 'sales/sales' => 'sales#sales'
+  get 'sales/search' => 'sales#search'
+
   resources :sales do
   	resources :items
   end
@@ -22,6 +26,7 @@ Rails.application.routes.draw do
   get 'sales/:id/client' => 'sales#client', as: :client_sale
   post 'sales/:id/select' => 'sales#select', as: :select_sale
 
+
   post 'sales/:sale_id/items/:id' => 'items#add', as: :add_sale_item
 
   get 'expenses/advance' => 'expenses#advance', as: :advance_expense
@@ -29,6 +34,7 @@ Rails.application.routes.draw do
   get 'expenses/expenses' => 'expenses#expenses'
   get 'expenses/advances' => 'expenses#advances'
   get 'expenses/devolutions' => 'expenses#devolutions'
+  get 'expenses/filter_date' => 'expenses#filter_date'
   get 'expenses/:id' => 'expenses#show'
 
   root 'home#index'
