@@ -1,9 +1,11 @@
 <div class="label">
-	<span>Relatório de Vendas por Vendedor</span>
+	<span>Comissão para Vendedor</span>
 </div>
 
 <div class="form-new">
-	<%= form_tag sales_salesman_path, method: :get do %>
+	<h4>*OBS: Aparelhos celulares nao contabilizam na comissão!</h4>
+
+	<%= form_tag sales_report_commission_path, method: :get do %>
 	<% @users = User.all %>
 	<div class="form-group">
 		<%= label_tag :Vendedor %><br>
@@ -11,12 +13,16 @@
 	</div>
 	<div class="form-group">
 		<%= label_tag 'Data Inicial' %><br>
-		<%= date_field_tag :begin_date, @begin_date %>
+		<%= date_field_tag :begin_date, @begin_date, class: 'form-control' %>
 	</div>
 	<div class="form-group">
 		<%= label_tag 'Data Final' %><br>
-		<%= date_field_tag :end_date, @end_date %>
+		<%= date_field_tag :end_date, @end_date, class: 'form-control' %>
 	</div>
+	<div>
+		<%= label_tag 'Comissão %' %><br>
+		<%= number_field_tag :commission, 0 %>%
+	</div><br>
 	<div class="form-group">
 		<%= button_to 'Gerar Relatório', nil, class: 'btn btn-success' %>
 	</div>

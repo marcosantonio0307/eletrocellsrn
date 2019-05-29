@@ -1,0 +1,29 @@
+<div class="label">
+	<span><%= @title %></span>
+	<h4>Vendas entre <%= @begin_date %> e <%= @end_date %></h4>
+</div>
+
+<% @sellers.each do |salesman| %>
+	<div class="report-salesman">
+		<div class="form-group">
+			<%= label_tag :vendedor %>
+			<%= text_field_tag :salesman, salesman.email, class: 'form-control' %>
+		</div>
+		<% @sales_amout = 0 %>
+		<% @sales_total = 0 %>
+		<% @sales.each do |sale| %>
+			<% if sale.user_id == salesman.id %>
+				<% @sales_amout += 1 %>
+				<% @sales_total += sale.total %>
+			<% end %>
+		<% end %>
+			<div class="form-group">
+				<%= label_tag 'Vendas no Período' %>
+				<%= text_field_tag :sales, @sales_amout, class: 'form-control' %>
+			</div>
+			<div class="form-group">
+				<%= label_tag :total %>
+				<%= text_field_tag :total, number_to_currency(@sales_total), class: 'form-control' %>
+			</div>
+	</div>
+<% end %>

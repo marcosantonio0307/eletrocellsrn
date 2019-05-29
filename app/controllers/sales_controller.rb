@@ -61,7 +61,7 @@ class SalesController < ApplicationController
 		@begin_date = params[:begin_date]
 		@end_date = params[:end_date]
 		
-		filter(@sale, @begin_date, @end_date)
+		filter(@sales, @begin_date, @end_date)
 	end
 
 	def search
@@ -74,16 +74,47 @@ class SalesController < ApplicationController
 		end
 	end
 
-	def salesman
+	def report_salesman
+		@title = 'Relatório por Vendedor'
+		@begin_date = params[:begin_date]
+		@end_date = params[:end_date]
+		@sellers = User.all
+		@sales = Sale.all
+		filter(@sales, @begin_date, @end_date)
+	end
+
+	def report_commission
 		id = params[:salesman]
 		salesman = User.where(id: id)
 		@sales = Sale.where(client_id: id)
 		@begin_date = params[:begin_date]
 		@end_date = params[:end_date]
+		@percentage = params[:commission]
+		@percentage = @percentage.to_f
 		@report = true
-		@title = "Vendedor #{salesman.first.email}"
+		@title = "Vendedor: #{salesman.first.email}"
 
 		filter(@sales, @begin_date, @end_date)
+
+		@commission = 0
+		@sales.each do |sale|
+			sale.item.each do |item|
+				if item.product.category != 'celular'
+					@commission += item.price
+				end
+			end
+		end
+		
+		@commission = @commission * (@percentage/100)
+	end
+
+	def sales_day
+		@title = 'Vendas do Dia'
+		@report = false
+		today = Time.now
+		today = today.strftime("%Y-%m-%d")
+
+		@sales = Sale.where "created_at like ?", "%#{today}%"
 	end
 
 	def destroy

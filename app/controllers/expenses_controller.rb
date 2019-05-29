@@ -96,6 +96,14 @@ class ExpensesController < ApplicationController
 		end
 	end
 
+	def expenses_day
+		@title = 'Despesas do Dia'
+		today = Time.now
+		today = today.strftime("%Y-%m-%d")
+
+		@expenses = Expense.where "created_at like ?", "%#{today}%"
+	end
+
 	def show
 		@expense = Expense.find(params[:id])
 	end
