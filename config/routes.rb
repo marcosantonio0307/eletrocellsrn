@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get 'sales/report_salesman' => 'sales#report_salesman'
   get 'sales/commission' => 'sales#commission'
   get 'sales/report_commission' => 'sales#report_commission'
+  get 'sales/sales_day' => 'sales#sales_day'
 
   resources :sales do
   	resources :items
@@ -39,6 +40,7 @@ Rails.application.routes.draw do
   get 'expenses/advances' => 'expenses#advances'
   get 'expenses/devolutions' => 'expenses#devolutions'
   get 'expenses/filter_date' => 'expenses#filter_date'
+  get 'expenses/expenses_day' => 'expenses#expenses_day'
   get 'expenses/:id' => 'expenses#show'
 
   root 'home#index'

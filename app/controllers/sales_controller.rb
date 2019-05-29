@@ -108,6 +108,15 @@ class SalesController < ApplicationController
 		@commission = @commission * (@percentage/100)
 	end
 
+	def sales_day
+		@title = 'Vendas do Dia'
+		@report = false
+		today = Time.now
+		today = today.strftime("%Y-%m-%d")
+
+		@sales = Sale.where "created_at like ?", "%#{today}%"
+	end
+
 	def destroy
 		id = params[:id]
 		Sale.destroy id
