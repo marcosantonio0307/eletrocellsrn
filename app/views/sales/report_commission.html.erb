@@ -1,0 +1,18 @@
+<div style="margin-bottom: 1em; float: right">
+	<%= link_to 'Voltar', sales_commission_path, class: 'btn btn-default' %>
+</div>
+	
+	
+	<div>
+		<h3>*OBS: Aparelhos celulares não contabilizan na comissão!</h3>
+		<h4><%= @title %></h4>
+		<h4>Valor da Comissão: <%= number_to_currency(@commission) %></h4>
+		<h4>Nº de Vendas: <%= @sales.size %></h4>
+		<h4>Período: <%= @begin_date %> à <%= @end_date %></h4>
+	</div>
+
+<div class="label">
+	<span>Relação das Vendas no Período</span>
+</div>
+
+<%= render 'sales' %>

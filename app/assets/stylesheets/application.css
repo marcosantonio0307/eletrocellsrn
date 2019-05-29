@@ -308,3 +308,12 @@ label[for="bt_menu"] {
 	float: right;
 	margin-bottom: 0.5em;
 }
+
+.report-salesman {
+	width: 100%;
+	float: left;
+	background: #E6E6E6;
+	padding: 1em 2em;
+	border-radius: 0.4em;
+	margin-bottom: 1.4em;
+}
