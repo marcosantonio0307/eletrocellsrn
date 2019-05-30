@@ -1,5 +1,6 @@
 <div class="options">
 	<span><input type='button' value='Voltar' onclick='history.go(-1)' class="btn btn-default" /></span>
+	<span><%= link_to 'Entrada', add_product_path(@product), class: 'btn btn-primary' %></span>
 	<span><%= link_to 'Editar', edit_product_path(@product), class: 'btn btn-warning' %></span>
 	<span><%= link_to 'Excluir', product_path(@product), method: :delete, class: 'btn btn-danger', data:{confirm: "Deja Excluir o Produto: #{@product.name}"} %></span>
 </div>
