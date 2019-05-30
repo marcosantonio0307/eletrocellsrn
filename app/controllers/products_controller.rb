@@ -76,6 +76,59 @@ class ProductsController < ApplicationController
 		end
 	end
 
+	def add
+		@product = Product.find(params[:id])
+	end
+
+	def entry
+		@product = Product.find(params[:id])
+		entry = params[:entry]
+		entry = entry.to_i
+		amount = @product.amount + entry
+		@product.update(amount: amount)
+
+		redirect_to product_path(@product), notice: 'Entrada Realizada com Sucesso!'
+	end
+
+	def report_products
+		@category = params[:category]
+		@products = Product.where(category: @category)
+		@products = @products.order :amount
+	end
+
+	def cost
+		cells = Product.where(category: 'celular')
+		resume(cells)
+		@cells_amount = @products_amount
+		@cells_cost = @products_cost
+		@cells_price = @products_price
+
+		eletronics = Product.where(category: 'eletronico')
+		resume(eletronics)
+		@eletronics_amount = @products_amount
+		@eletronics_cost = @products_cost
+		@eletronics_price = @products_price
+
+		parts = Product.where(category: 'peca')
+		resume(parts)
+		@parts_amount = @products_amount
+		@parts_cost = @products_cost
+		@parts_price = @products_price
+
+		accessories = Product.where(category: 'acessorio')
+		resume(accessories)
+		@accessories_amount = @products_amount
+		@accessories_cost = @products_cost
+		@accessories_price = @products_price
+
+		all_products = Product.all
+		resume(all_products)
+		@all_products_amount = @products_amount
+		@all_products_cost = @products_cost
+		@all_products_price = @products_price
+
+	end
+
 	def destroy
 		id = params[:id]
 		Product.destroy id
@@ -91,3 +144,22 @@ class ProductsController < ApplicationController
 		@product = Product.find(params[:id])
 	end
 end
+
+private
+
+	def resume(products)
+		@products_amount = 0
+		@products_cost = 0
+		@products_price = 0
+		products.each do |product|
+			amount = product.amount
+			cost = amount * product.cost
+			price = amount * product.price
+			@products_amount += amount
+			@products_cost += cost
+			@products_price += price
+		end
+		@products_amount
+		@products_cost
+		@products_price
+	end

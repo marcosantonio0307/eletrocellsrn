@@ -1,0 +1,41 @@
+<div class="label">
+	<span>Valor do Estoque</span>
+</div>
+
+<div style="margin: 0 auto; float: left; width: 100%; padding-left: 3em;">
+	
+	<div class="card">
+		<h4 align="center">Celulares</h4>
+		<p>Qtde. Estoque: <%= @cells_amount %></p>
+		<p>Valor Investido: <%= number_to_currency @cells_cost %></p>
+		<p>Projeção Vendas: <%= number_to_currency @cells_price %></p>
+	</div>
+
+	<div class="card">
+		<h4 align="center">Eletronicos</h4>
+		<p>Qtde. Estoque: <%= @eletronics_amount %></p>
+		<p>Valor Investido: <%= number_to_currency @eletronics_cost %></p>
+		<p>Projeção Vendas: <%= number_to_currency @eletronics_price %></p>
+	</div>
+
+	<div class="card">
+		<h4 align="center">Peças</h4>
+		<p>Qtde. Estoque: <%= @parts_amount %></p>
+		<p>Valor Investido: <%= number_to_currency @parts_cost %></p>
+		<p>Projeção Vendas: <%= number_to_currency @parts_price %></p>
+	</div>
+
+	<div class="card">
+		<h4 align="center">Acessórios</h4>
+		<p>Qtde. Estoque: <%= @accessories_amount %></p>
+		<p>Valor Investido: <%= number_to_currency @accessories_cost %></p>
+		<p>Projeção Vendas: <%= number_to_currency @accessories_price %></p>
+	</div>
+
+	<div class="doble-card">
+		<h4 align="center">Geral</h4>
+		<p>Qtde. Estoque: <%= @all_products_amount %></p>
+		<p>Valor Investido: <%= number_to_currency @all_products_cost %></p>
+		<p>Projeção Vendas: <%= number_to_currency @all_products_price %></p>
+	</div>
+</div>

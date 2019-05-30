@@ -317,3 +317,19 @@ label[for="bt_menu"] {
 	border-radius: 0.4em;
 	margin-bottom: 1.4em;
 }
+
+.card {
+	float: left;
+	background: #F5A9A9;
+	width: 45%;
+	padding: 1em;
+	margin: 1em;
+}
+
+.doble-card {
+	float: left;
+	background: #9FF781;
+	width: 92.5%;
+	padding: 1em;
+	margin: 1em;
+}
