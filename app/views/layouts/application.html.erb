@@ -49,8 +49,8 @@
             <li><%= link_to 'Nova Despesa', new_expense_path %></li>
             <li><%= link_to 'Vale Funcionario', advance_expense_path %></li>
             <li><%= link_to 'Devolução', devolution_expense_path %></li>
-            <li><%= link_to 'Minhas Vendas', sales_path %></li>
-            <li><%= link_to 'Minhas Despesas', expenses_path %></li>
+            <li><%= link_to 'Vendas do Dia', sales_sales_day_path %></li>
+            <li><%= link_to 'Despesas do Dia', expenses_expenses_day_path %></li>
           </ul>
         </li>
         <li><a href="">Estoque</a>
@@ -63,17 +63,23 @@
             <li><%= link_to 'Todos Produtos', products_path %></li>
           </ul>
         </li>
-        <li><a href="">Ordens de Serviço</a></li>
+        <li><a href="">Ordens de Serviço</a>
+          <ul>
+            <li><%= link_to 'Nova O.S', new_service_sale_path, data:{confirm: 'Deseja Abrir uma Nova O.S?'} %></li>
+            <li><%= link_to 'O.S Abertas', sales_opens_path %></li>
+            <li><%= link_to 'O.S do Dia', sales_services_day_path %></li>
+          </ul>
+        </li>
         <li><a href="">Relatorios</a>
           <ul>
-            <li><%= link_to 'Todas Vendas', sales_sales_path %></li>
-            <li><%= link_to 'Vendas do Dia', sales_sales_day_path %></li>
+            <li><%= link_to 'Todas Vendas', sales_path %></li>
             <li><%= link_to 'Por Vendedor', sales_salesman_path %></li>
             <li><%= link_to 'Comissao', sales_commission_path %></li>
-            <li><%= link_to 'Despesas do Dia', expenses_expenses_day_path %></li>
-            <li><%= link_to 'Despesas', expenses_expenses_path %></li>
-            <li><%= link_to 'Vales', expenses_advances_path %></li>
+            <li><%= link_to 'Todas Despesas', expenses_path %></li>
+            <li><%= link_to 'Despesas Gerais', expenses_expenses_path %></li>
+            <li><%= link_to 'Vales Funcionario', expenses_advances_path %></li>
             <li><%= link_to 'Devoluções', expenses_devolutions_path %></li>
+            <li><%= link_to 'Todas O.S', sales_services_path %></li>
             <li><%= link_to 'Saldo Estoque', products_category_path %></li>
             <li><%= link_to 'Valor Estoque', products_cost_path %></li>
           </ul>

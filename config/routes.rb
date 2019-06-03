@@ -13,6 +13,11 @@ Rails.application.routes.draw do
   get 'sales/commission' => 'sales#commission'
   get 'sales/report_commission' => 'sales#report_commission'
   get 'sales/sales_day' => 'sales#sales_day'
+  get 'sales/services_day' => 'sales#services_day'
+  get 'sales/new_service' => 'sales#new_service', as: :new_service_sale
+  get 'sales/services' => 'sales#services'
+  get 'sales/:id/finish' => 'sales#finish', as: :finish_sale
+  get 'sales/opens' => 'sales#opens'
 
   resources :sales do
   	resources :items

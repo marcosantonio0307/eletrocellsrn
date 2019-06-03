@@ -4,14 +4,23 @@
 	}
 </style>
 
+<% if @sale.category == 'sale' %>
+	<% @title = 'Venda' %>
+<% else %>
+	<% @title = 'O.S' %>
+<% end %>
+
 <div class="label">
-	<span>Venda Nº <%= @sale.id %></span>
+	<span><%= @title %> Nº <%= @sale.id %></span>
 </div>
 
 <div class="options">
-	<span><%= link_to 'Voltar', sales_path, class: 'btn btn-default' %></span>
+	<span><input type='button' value='Voltar' onclick='history.go(-1)' class="btn btn-default" /></span>
 	<span><%= link_to 'Editar', edit_sale_path(@sale), class: 'btn btn-warning' %></span>
 	<span><%= link_to 'Excluir', sale_path(@sale), method: :delete, class: 'btn btn-danger', data:{confirm: 'Deseja Excluir a Venda?'} %></span>
+	<% if @sale.status == 'aberta' %>
+		<span><%= link_to 'Finalizar O.S', finish_sale_path(@sale), class: 'btn btn-success' %></span>
+	<% end %>
 </div>
 
 <div class="form-new">
@@ -21,6 +30,31 @@
 		<%= text_field_tag :client, @sale.client.name, class: 'form-control', :disabled=>true %>
 	</div><br>
 
+	<% if @sale.category == 'service' %>
+	<div class="form-group">
+		<%= label_tag :telefone %>
+		<%= text_field_tag :fone, @sale.client.fone, class: 'form-control', :disabled=>true %>
+	</div><br>
+
+	<div class="form-group">
+		<%= label_tag :endereco %>
+		<%= text_field_tag :address, @sale.client.address, class: 'form-control', :disabled=>true %>
+	</div><br>
+	<% end %>
+
 	<%= render 'items' %>
+
+	<% if @sale.category == 'service' %>
+	<div class="form-group">
+		<%= label_tag :descricao %>
+		<%= text_area_tag :description, @sale.description, class: 'form-control', :disabled=>true %>
+	</div>
+
+	<div class="form-group">
+		<%= label_tag :status %>
+		<%= text_field_tag :status, @sale.status, class: 'form-control', :disabled=>true %>
+	</div>
+
+	<% end %>
 
 </div>
