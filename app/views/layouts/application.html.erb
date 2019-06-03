@@ -21,7 +21,7 @@
 
       <div class="info-login">
         <% if signed_in? %>
-          <%= link_to 'Sair', destroy_user_session_path, method: :delete, class: "btn btn-default" %>
+          <%= link_to 'Sair', destroy_user_session_path, method: :delete, class: "btn btn-default", data:{confirm: 'Lembre-se de Fechar o Caixa ao Fim do Dia =)'} %>
           <span class="current_user"><%= current_user.email%></span>
           <%= image_tag "login.png", :width => "30px", :height => "30px" %>
         <% end %>
@@ -51,6 +51,8 @@
             <li><%= link_to 'Devolução', devolution_expense_path %></li>
             <li><%= link_to 'Vendas do Dia', sales_sales_day_path %></li>
             <li><%= link_to 'Despesas do Dia', expenses_expenses_day_path %></li>
+            <li><%= link_to 'Caixa do Dia', cash_index_path %></li>
+            <li><%= link_to 'Reabrir Caixa', cash_reopen_path, data:{confirm: 'Deseja Reabrir o Caixa?'} %></li>
           </ul>
         </li>
         <li><a href="">Estoque</a>
@@ -82,6 +84,7 @@
             <li><%= link_to 'Todas O.S', sales_services_path %></li>
             <li><%= link_to 'Saldo Estoque', products_category_path %></li>
             <li><%= link_to 'Valor Estoque', products_cost_path %></li>
+            <li><%= link_to 'Caixa Fechado', cash_report_path %></li>
           </ul>
         </li>
         <li><a href="">Usuários</a></li>

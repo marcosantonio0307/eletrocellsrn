@@ -4,6 +4,12 @@ Rails.application.routes.draw do
   resources :clients, only:[:index, :new, :create, :edit, :update, :destroy]
   resources :products, only:[:index, :new, :create, :edit, :update, :destroy]
   resources :expenses, only:[:index, :new, :create, :edit, :update, :destroy]
+  resources :cash, only:[:index, :new, :edit, :update]
+
+  get 'cash/report' => 'cash/report'
+  get 'cash/filter_date' => 'cash#filter_date'
+  get 'cash/reopen' => 'cash#reopen'
+  get 'cash/:id' => 'cash#show'
 
   get 'sales/filter_date' => 'sales#filter_date'
   get 'sales/sales' => 'sales#sales'
