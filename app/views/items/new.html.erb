@@ -24,7 +24,7 @@
 			<%= number_field_tag :amount, 0, class: 'form-control' %>
 		</div>
 
-		<% if @item.product.category != 'celular' && current_user.email == 'cesar@admin.com' %>
+		<% if current_user.email == 'cesar@admin.com' || @item.product.category != 'celular' %>
 			<div class="form-group">
 				<%= label_tag 'Desconto %' %>
 				<%= number_field_tag :discount, 0, class: 'form-control', id: 'campo2' %>
