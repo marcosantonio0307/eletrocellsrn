@@ -1,15 +1,22 @@
 class SalesController < ApplicationController
 
 	def index
-		@sales = Sale.all
+		@sales = Sale.where(category: 'sale')
 		@report = false
 		@title = 'Vendas'
 	end
 
-	def sales
-		@sales = Sale.all
-		@report = true
-		@title = 'Vendas'
+	def services
+		@sales = Sale.where(category: 'service')
+		@report = false
+		@title = 'Ordens de Serviço'
+		render :index
+	end
+
+	def opens
+		@sales = Sale.where(category: 'service', status: 'aberta')
+		@report = false
+		@title = 'O.S Abertas'
 		render :index
 	end
 
@@ -24,6 +31,27 @@ class SalesController < ApplicationController
 		@sale.client_id = 1
 		@sale.user_id = current_user.id
 		@sale.total = 0
+		@sale.category = 'sale'
+		@sale.status = 'fechada'
+		@sale.description = ''
+		@sale.save
+		redirect_to client_sale_path(@sale)
+	end
+
+	def new_service
+		@sale = Sale.new
+		if Sale.last != nil
+			last_id = Sale.last.id
+			@sale.id = (last_id + 1)
+		else
+			@sale.id = 1
+		end
+		@sale.client_id = 1
+		@sale.user_id = current_user.id
+		@sale.total = 0
+		@sale.category = 'service'
+		@sale.status = 'aberta'
+		@sale.description = ''
 		@sale.save
 		redirect_to client_sale_path(@sale)
 	end
@@ -53,11 +81,21 @@ class SalesController < ApplicationController
 
 	def update
 		@sale = Sale.find(params[:id])
+		description = params[:description]
+		status = params[:status]
+		@sale.update(description: description, status: status)
 		redirect_to sale_path(@sale), notice: 'Venda Salva com Sucesso!'
 	end
 
+	def finish
+		@sale = Sale.find(params[:id])
+		@sale.update(status: 'fechada')
+		redirect_to sales_services_path, notice: 'O.S finalizada com Sucesso!'
+	end
+
 	def filter_date
-		@sales = Sale.all
+		category = params[:category]
+		@sales = Sale.where(category: category)
 		@begin_date = params[:begin_date]
 		@end_date = params[:end_date]
 		
@@ -79,14 +117,14 @@ class SalesController < ApplicationController
 		@begin_date = params[:begin_date]
 		@end_date = params[:end_date]
 		@sellers = User.all
-		@sales = Sale.all
+		@sales = Sale.where(category: 'sale')
 		filter(@sales, @begin_date, @end_date)
 	end
 
 	def report_commission
 		id = params[:salesman]
 		salesman = User.where(id: id)
-		@sales = Sale.where(client_id: id)
+		@sales = Sale.where(user_id: id, category: 'sale')
 		@begin_date = params[:begin_date]
 		@end_date = params[:end_date]
 		@percentage = params[:commission]
@@ -113,8 +151,19 @@ class SalesController < ApplicationController
 		@report = false
 		today = Time.now
 		today = today.strftime("%Y-%m-%d")
+		@sales = Sale.where(category: 'sale')
+		@sales.where "created_at like ?", "%#{today}%"
+	end
 
-		@sales = Sale.where "created_at like ?", "%#{today}%"
+	def services_day
+		@title = 'O.S do Dia'
+		@report = false
+		today = Time.now
+		today = today.strftime("%Y-%m-%d")
+		@sales = Sale.where(category: 'service')
+		@sales.where "created_at like ?", "%#{today}%"
+
+		render :sales_day
 	end
 
 	def destroy
@@ -135,18 +184,18 @@ private
 	def filter(sales, begin_date, end_date)
 		filter = []
 
-		if @begin_date > @end_date
+		if begin_date > end_date
 			render :index
 		else
-			@sales.each do |sale|
-				if sale.created_at.strftime("%Y-%m-%d") == @begin_date
+			sales.each do |sale|
+				if sale.created_at.strftime("%Y-%m-%d") == begin_date
 					filter << sale
-				elsif sale.created_at.strftime("%Y-%m-%d") > @begin_date && sale.created_at.strftime("%Y-%m-%d") < @end_date
+				elsif sale.created_at.strftime("%Y-%m-%d") > begin_date && sale.created_at.strftime("%Y-%m-%d") < end_date
 					filter << sale
-				elsif sale.created_at.strftime("%Y-%m-%d") == @end_date
+				elsif sale.created_at.strftime("%Y-%m-%d") == end_date
 					filter << sale
 				end
 			end
-			@sales = filter
+			sales = filter
 		end
 	end

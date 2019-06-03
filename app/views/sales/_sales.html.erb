@@ -5,6 +5,9 @@
 		<th>Cliente</th>
 		<th>Vendedor</th>
 		<th>Total</th>
+		<% if @sales.first.category == 'service' %>
+			<th>Status</th>
+		<% end %>
 	</thead>
 	<% @total = 0 %>
 	<% @sales.each do |sale| %>
@@ -15,6 +18,9 @@
 			<td><%= sale.client.name %></td>
 			<td><%= sale.user.email %></td>
 			<td><%= number_to_currency sale.total %></td>
+			<% if sale.category == 'service' %>
+				<td><%= sale.status %></td>
+			<% end %>
 			<% if @report != true %>
 				<td><%= link_to 'Exibir', sale_path(sale), class: 'btn btn-primary' %></td>
 			<% end %>
