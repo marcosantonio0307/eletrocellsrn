@@ -1,0 +1,23 @@
+<div class="label">
+	<span>Fechar Caixa</span>
+</div>
+
+<%= form_for @cash do |f| %>
+	
+	<div class="form-new">
+		<div class="form-group">
+			<%= f.label :total %>
+			<%= f.text_field :total, class: 'form-control', :disabled=>true %>
+		</div>
+
+		<div class="form-group">
+			<%= f.label 'Valor Inicial Proximo Caixa' %>
+			<%= f.text_field_tag :next_begin, 0, class: 'form-control' %>
+		</div>
+
+		<div class="form-group">
+			<%= f.submit :fechar, class: 'btn btn-success' %>
+		</div>
+	</div>
+
+<% end %>

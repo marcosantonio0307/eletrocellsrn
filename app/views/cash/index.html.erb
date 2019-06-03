@@ -1,0 +1,31 @@
+<div class="label">
+	<span>Caixa do Dia</span>
+</div>
+
+<div class="form-new">
+
+	<% if @today_cash == [] %>
+		<div class="nav-right">
+			<%= form_tag new_cash_path, method: :get do %>
+			<span style="visibility: hidden;"><%= text_field_tag :total, @current_cash %></span>
+			<span><%= button_to 'Fechar Caixa', nil, class: 'btn btn-primary', data:{confirm: 'Finalizar Caixa do Dia? OBS: Caixa só deve ser fechado ao fim do Expediente!'} %></span>
+			<% end %>
+		</div>			
+	<% end %>
+
+	<div class="report-salesman">
+		<h4>Saldo: <% if @current_cash != nil %> <%= number_to_currency @current_cash %> <% end %></h4>
+	</div>
+
+	<div class="report-salesman", style="background: #CEECF5;">
+		<h5>Valor Inicial: <%= number_to_currency @begin_value %></h5>
+	</div>
+
+	<div class="report-salesman", style="background: #BCF5A9;">
+		<h5>Entradas: <%= number_to_currency @total_cash_receipts %></h5>
+	</div>
+
+	<div class="report-salesman", style="background: #F5A9A9;">
+		<h5>Saídas: <%= number_to_currency @total_cash_outflows %></h5>
+	</div>
+</div>
