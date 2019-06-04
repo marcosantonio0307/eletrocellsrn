@@ -7,8 +7,9 @@ Rails.application.routes.draw do
   resources :cash, only:[:index, :new, :edit, :update]
 
   get 'users/edit_user' => 'users#edit_user'
+  get 'users/edit_category/:id' => 'users#edit_category', as: :category_user
   resources :users, only:[:index, :new, :create, :edit, :update]
-  
+
 
   get 'cash/report' => 'cash/report'
   get 'cash/filter_date' => 'cash#filter_date'

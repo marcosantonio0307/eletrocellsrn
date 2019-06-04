@@ -1,7 +1,9 @@
 <div class="options">
 	<%= link_to 'Voltar', expenses_path, class: 'btn btn-default' %>
-	<%= link_to 'Editar', edit_expense_path(@expense), class: 'btn btn-warning' %>
-	<%= link_to 'Excluir', expense_path(@expense), method: :delete, class: 'btn btn-danger' %>
+	<% if admin?(current_user) %>
+		<%= link_to 'Editar', edit_expense_path(@expense), class: 'btn btn-warning' %>
+		<%= link_to 'Excluir', expense_path(@expense), method: :delete, class: 'btn btn-danger' %>
+	<% end %>
 </div>
 
 <div class="form-new">

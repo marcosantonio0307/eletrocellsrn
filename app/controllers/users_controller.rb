@@ -17,12 +17,17 @@ class UsersController < ApplicationController
 		@user = User.find(params[:id])
 	end
 
+	def edit_category
+		@user = User.find(params[:id])
+	end
+
 	def update
 		user = User.find(params[:id])
 		password = params[:password]
+		category = params[:category]
 		if password != ''
-			user.update(password: password)
-			redirect_to root_path, notice: 'Senha alterada com Sucesso'
+			user.update(password: password, category: category)
+			redirect_to root_path, notice: 'Alterado com Sucesso!'
 		else
 			render :edit
 		end

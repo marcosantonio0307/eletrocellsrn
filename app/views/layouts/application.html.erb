@@ -52,13 +52,17 @@
             <li><%= link_to 'Devolução', devolution_expense_path %></li>
             <li><%= link_to 'Vendas do Dia', sales_sales_day_path %></li>
             <li><%= link_to 'Despesas do Dia', expenses_expenses_day_path %></li>
-            <li><%= link_to 'Caixa do Dia', cash_index_path %></li>
-            <li><%= link_to 'Reabrir Caixa', cash_reopen_path, data:{confirm: 'Deseja Reabrir o Caixa?'} %></li>
+            <% if admin?(current_user) %>
+              <li><%= link_to 'Caixa do Dia', cash_index_path %></li>
+              <li><%= link_to 'Reabrir Caixa', cash_reopen_path, data:{confirm: 'Deseja Reabrir o Caixa?'} %></li>
+            <% end %>
           </ul>
         </li>
         <li><a href="">Estoque</a>
           <ul>
-            <li><%= link_to 'Novo Produto', new_product_path %></li>
+            <% if admin?(current_user) %>
+              <li><%= link_to 'Novo Produto', new_product_path %></li>
+            <% end %>
             <li><%= link_to 'Celulares', products_cell_path %></li>
             <li><%= link_to 'Eletrônicos', products_eletronic_path %></li>
             <li><%= link_to 'Peças', products_part_path %></li>
@@ -74,25 +78,29 @@
           </ul>
         </li>
         <li><a href="">Relatorios</a>
-          <ul>
-            <li><%= link_to 'Todas Vendas', sales_path %></li>
-            <li><%= link_to 'Por Vendedor', sales_salesman_path %></li>
-            <li><%= link_to 'Comissao', sales_commission_path %></li>
-            <li><%= link_to 'Todas Despesas', expenses_path %></li>
-            <li><%= link_to 'Despesas Gerais', expenses_expenses_path %></li>
-            <li><%= link_to 'Vales Funcionario', expenses_advances_path %></li>
-            <li><%= link_to 'Devoluções', expenses_devolutions_path %></li>
-            <li><%= link_to 'Todas O.S', sales_services_path %></li>
-            <li><%= link_to 'Saldo Estoque', products_category_path %></li>
-            <li><%= link_to 'Valor Estoque', products_cost_path %></li>
-            <li><%= link_to 'Caixa Fechado', cash_report_path %></li>
-          </ul>
+          <% if admin?(current_user) %>
+            <ul>
+              <li><%= link_to 'Todas Vendas', sales_path %></li>
+              <li><%= link_to 'Por Vendedor', sales_salesman_path %></li>
+              <li><%= link_to 'Comissao', sales_commission_path %></li>
+              <li><%= link_to 'Todas Despesas', expenses_path %></li>
+              <li><%= link_to 'Despesas Gerais', expenses_expenses_path %></li>
+              <li><%= link_to 'Vales Funcionario', expenses_advances_path %></li>
+              <li><%= link_to 'Devoluções', expenses_devolutions_path %></li>
+              <li><%= link_to 'Todas O.S', sales_services_path %></li>
+              <li><%= link_to 'Saldo Estoque', products_category_path %></li>
+              <li><%= link_to 'Valor Estoque', products_cost_path %></li>
+              <li><%= link_to 'Caixa Fechado', cash_report_path %></li>
+            </ul>
+          <% end %>
         </li>
         <li><a href="">Usuários</a>
           <ul>
             <li><%= link_to 'Alterar Senha', users_edit_user_path %></li>
-            <li><%= link_to 'Novo Usuário', new_user_path, data:{confirm: 'Deseja Criar Novo Usuario?'} %></li>
-            <li><%= link_to 'Todos Usuários', users_path %></li>
+            <% if admin?(current_user) %>
+              <li><%= link_to 'Novo Usuário', new_user_path, data:{confirm: 'Deseja Criar Novo Usuario?'} %></li>
+              <li><%= link_to 'Todos Usuários', users_path %></li>
+            <% end %>
           </ul>
         </li>
         <% end %>
