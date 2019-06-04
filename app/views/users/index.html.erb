@@ -1,0 +1,19 @@
+<div class="label">
+	<span>Usuários Cadastrados</span>
+</div>
+
+<table class="table table-bordered">
+	<thead>
+		<th>Criado Em</th>
+		<th>Login</th>
+	</thead>
+	<tbody>
+		<% @users.each do |user| %>
+			<tr>
+				<td><%= user.created_at.strftime("%d/%m/%Y") %></td>
+				<td><%= user.email %></td>
+				<td><%= link_to 'Alterar Senha', edit_user_path(user), class: 'btn btn-warning' %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

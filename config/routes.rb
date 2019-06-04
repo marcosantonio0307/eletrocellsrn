@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   resources :expenses, only:[:index, :new, :create, :edit, :update, :destroy]
   resources :cash, only:[:index, :new, :edit, :update]
 
+  get 'users/edit_user' => 'users#edit_user'
+  resources :users, only:[:index, :new, :create, :edit, :update]
+  
+
   get 'cash/report' => 'cash/report'
   get 'cash/filter_date' => 'cash#filter_date'
   get 'cash/reopen' => 'cash#reopen'
@@ -24,7 +28,6 @@ Rails.application.routes.draw do
   get 'sales/services' => 'sales#services'
   get 'sales/:id/finish' => 'sales#finish', as: :finish_sale
   get 'sales/opens' => 'sales#opens'
-
   resources :sales do
   	resources :items
   end
@@ -46,8 +49,6 @@ Rails.application.routes.draw do
 
   get 'sales/:id/client' => 'sales#client', as: :client_sale
   post 'sales/:id/select' => 'sales#select', as: :select_sale
-
-
   post 'sales/:sale_id/items/:id' => 'items#add', as: :add_sale_item
 
   get 'expenses/advance' => 'expenses#advance', as: :advance_expense

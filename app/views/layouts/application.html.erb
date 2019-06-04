@@ -37,6 +37,7 @@
           <%= link_to (image_tag 'apple.png', :width => "35px", :height => "30px"), root_path %>
         </div>
 
+        <% if signed_in? %>
         <li><a href="">Clientes</a>
           <ul>
             <li><%= link_to "Novo Cliente", new_client_path %></li>
@@ -87,7 +88,14 @@
             <li><%= link_to 'Caixa Fechado', cash_report_path %></li>
           </ul>
         </li>
-        <li><a href="">Usuários</a></li>
+        <li><a href="">Usuários</a>
+          <ul>
+            <li><%= link_to 'Alterar Senha', users_edit_user_path %></li>
+            <li><%= link_to 'Novo Usuário', new_user_path, data:{confirm: 'Deseja Criar Novo Usuario?'} %></li>
+            <li><%= link_to 'Todos Usuários', users_path %></li>
+          </ul>
+        </li>
+        <% end %>
       </ul>
 
     </nav> <!-- fim do Menu -->
