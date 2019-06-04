@@ -84,7 +84,7 @@ class SalesController < ApplicationController
 		description = params[:description]
 		status = params[:status]
 		@sale.update(description: description, status: status)
-		redirect_to sale_path(@sale), notice: 'Venda Salva com Sucesso!'
+		redirect_to sales_path, notice: 'Venda Salva com Sucesso!'
 	end
 
 	def finish
@@ -152,7 +152,7 @@ class SalesController < ApplicationController
 		today = Time.now
 		today = today.strftime("%Y-%m-%d")
 		@sales = Sale.where(category: 'sale')
-		@sales.where "created_at like ?", "%#{today}%"
+		@sales = @sales.where "created_at like ?", "%#{today}%"
 	end
 
 	def services_day

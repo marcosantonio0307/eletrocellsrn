@@ -1,14 +1,14 @@
-<% @cashes.each do |cash| %>
-	<table class="table table-bordered">
-		<thead>
-			<th>Data</th>
-			<th>Total</th>
-		</thead>
-		<tbody>
-			<tr>
-				<td><%= cash.created_at.strftime("%d/%m/%Y") %></td>
-				<td><%= number_to_currency cash.total %></td>
-			</tr>
-		</tbody>
-	</table>
-<% end %>
+<table class="table table-bordered">
+	<thead>
+		<th>Data</th>
+		<th>Total</th>
+	</thead>
+	<tbody>
+		<% @cashes.each do |cash| %>
+		<tr>
+			<td><%= cash.created_at.strftime("%d/%m/%Y") %></td>
+			<td><%= number_to_currency cash.total %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>

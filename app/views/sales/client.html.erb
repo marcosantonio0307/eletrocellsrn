@@ -1,17 +1,26 @@
 <div class="label">
-	<span>Nova Venda</span>
+	<span>Selecione o Cliente</span>
 </div>
 
 <div class="form-new">
+
+	<%= form_tag search_clients_path, method: :get, class: 'navbar-form navbar-right' do %>
+		<div>
+			<%= text_field_tag :name, @name, class: 'form-control' %>
+			<%= button_to 'Buscar', nil, class: 'btn btn-success' %>
+	</div><br>
+	<% end %> 
+
 	<%= form_tag select_sale_path do %>
 
 		<div class="form-group">
+			<br>
 			<%= label_tag :cpf %>
 			<%= text_field_tag :cpf, nil, class: 'form-control' %>
 		</div> 
 
 		<div class="form-group">
-			<%= submit_tag :selecionar, class: 'btn btn-success' %>
+			<%= submit_tag :selecionar, class: 'btn btn-primary' %>
 		</div>
 	<% end %>
 </div>

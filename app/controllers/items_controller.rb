@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
 	def new
 		@sale = Sale.find(params[:sale_id])
-		sku = params[:sku]
+		sku = params[:sku].strip
 		item = Product.where "sku like ?", "%#{sku}%"
 
 		if item.first.amount > 0
