@@ -96,6 +96,22 @@ class ProductsController < ApplicationController
 		@products = @products.order :amount
 	end
 
+	def inventory
+		today = Time.now
+		today = today.strftime("%Y-%m-%d")
+		@sales = Sale.where "created_at like ?", "%#{today}%"
+		@products = []
+		@sales.each do |sale|
+			sale.item.each do |item|
+				if @products.include? item.product
+					item.product
+				else
+					@products << item.product
+				end
+			end
+		end
+	end
+
 	def cost
 		cells = Product.where(category: 'celular')
 		resume(cells)

@@ -43,6 +43,7 @@ Rails.application.routes.draw do
   get 'products/accessory' => 'products#accessory'
   get 'products/category' => 'products#category'
   get 'products/report_products' => 'products#report_products'
+  get 'products/inventory' => 'products#inventory'
   get 'products/cost' => 'products#cost'
   get 'products/:id/add' => 'products#add', as: :add_product
   get 'products/:id/entry' => 'products#entry', as: :entry_product
