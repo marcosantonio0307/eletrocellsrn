@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Inventario</title>
+	<meta charset="utf-8">
+	<%= wicked_pdf_stylesheet_link_tag 'pdf' %>
+	<%= wicked_pdf_stylesheet_link_tag 'bootstrap_and_overrides' %>
+</head>
+<body>
+	<h2 align="center">Inventário do Dia</h2>
+	<h4 align="center"><%= Time.now.strftime("%d/%m/%Y") %></h4>
+	<br><br><br><br>
+
+	<table class="table table-bordered">
+		<thead>
+			<th>SKU</th>
+			<th>Produto</th>
+			<th>Qtde. Estoque</th>
+			<th>Contagem</th>
+		</thead>
+		<tbody>
+			<% @products.each do |product| %>
+			<tr>
+				<td><%= product.sku %></td>
+				<td><%= product.name %></td>
+				<td><%= product.amount %></td>
+				<td></td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+</body>
+</html>

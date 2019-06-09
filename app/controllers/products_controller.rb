@@ -110,6 +110,11 @@ class ProductsController < ApplicationController
 				end
 			end
 		end
+
+		respond_to do |format|
+			format.html
+			format.pdf { render template: 'products/print_inventory', pdf: 'print_inventory'}
+		end
 	end
 
 	def cost

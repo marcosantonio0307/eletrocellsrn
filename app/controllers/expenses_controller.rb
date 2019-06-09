@@ -27,7 +27,7 @@ class ExpensesController < ApplicationController
 	def index	
 		@expenses = Expense.all
 		@title = 'Minhas Despesas'
-		@report = false
+		@report = true
 	end
 
 	def new
@@ -69,6 +69,7 @@ class ExpensesController < ApplicationController
 
 	def filter_date
 		@category = params[:category]
+		@report = true
 
 		if @category != ""
 			@expenses = Expense.where(category: @category)
