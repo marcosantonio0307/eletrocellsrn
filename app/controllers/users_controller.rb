@@ -25,8 +25,9 @@ class UsersController < ApplicationController
 		user = User.find(params[:id])
 		password = params[:password]
 		category = params[:category]
+		name = params[:name]
 		if password != ''
-			user.update(password: password, category: category)
+			user.update(password: password, category: category, name: name)
 			redirect_to root_path, notice: 'Alterado com Sucesso!'
 		else
 			render :edit

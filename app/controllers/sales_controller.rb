@@ -84,7 +84,12 @@ class SalesController < ApplicationController
 		description = params[:description]
 		status = params[:status]
 		@sale.update(description: description, status: status)
-		redirect_to sales_path, notice: 'Venda Salva com Sucesso!'
+
+		if @sale.category == 'sale'
+			redirect_to sales_sales_day_path, notice: 'Venda Salva com Sucesso!'
+		else
+			redirect_to sales_services_day_path, notice: 'O.S Salva com Sucesso!'
+		end
 	end
 
 	def finish

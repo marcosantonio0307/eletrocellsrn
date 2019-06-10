@@ -1,7 +1,6 @@
 <div class="options">
 	<span><%= link_to 'Voltar', clients_path, class: 'btn btn-default' %></span>
-	<span><%= link_to 'Editar', edit_client_path(@client), class: 'btn btn-warning' %></span>
-	<span><%= button_to 'Excluir', client_path(@client), method: :delete, class: 'btn btn-danger', data: {confirm: "Deseja Excluir o Cliente: #{@client.name}?"} %></span>	
+	<span><%= link_to 'Editar', edit_client_path(@client), class: 'btn btn-warning' %></span>	
 </div>
 
 <%= form_for @client do |f| %>

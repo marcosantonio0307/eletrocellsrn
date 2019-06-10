@@ -51,7 +51,7 @@ class ExpensesController < ApplicationController
 		@expense.update(user_id: current_user.id)
 
 		if @expense.save
-			redirect_to expenses_path, notice: 'Despesa Salva com Sucesso!'
+			redirect_to expenses_expenses_day_path, notice: 'Despesa Salva com Sucesso!'
 		end
 	end
 
