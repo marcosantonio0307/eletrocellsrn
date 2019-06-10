@@ -6,6 +6,7 @@
 	<thead>
 		<th>Criado Em</th>
 		<th>Login</th>
+		<th>Nome</th>
 		<th>Tipo</th>
 	</thead>
 	<tbody>
@@ -14,12 +15,17 @@
 				<td><%= user.created_at.strftime("%d/%m/%Y") %></td>
 				<td><%= user.email %></td>
 				<td>
+					<% if user.name != nil %>
+						<%= user.name %>
+					<% end %>
+				</td>
+				<td>
 					<% if user.category != nil %>
 						<%= user.category %>
 					<% end %>
 				</td>
 				<td><%= link_to 'Alterar Senha', edit_user_path(user), class: 'btn btn-warning' %></td>
-				<td><%= link_to 'Selecionar Tipo', category_user_path(user), class: 'btn btn-primary' %></td>
+				<td><%= link_to 'Editar Usuario', category_user_path(user), class: 'btn btn-primary' %></td>
 			</tr>
 		<% end %>
 	</tbody>

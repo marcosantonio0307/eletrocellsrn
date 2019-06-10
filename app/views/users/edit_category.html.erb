@@ -9,7 +9,10 @@
 	          <%= f.label :usuario %><br>
 	          <%= f.email_field :email, :disabled=>true, class: '' %>
 	        </div><br>
-
+	        <div class="field">
+	          <%= f.label :nome %><br>
+	          <%= text_field_tag :name %>
+	        </div><br>
 	        <div class="field">
 	          <%= f.label :tipo %><br>
 	          <%= select_tag :category, options_for_select(['admin', 'vendedor', 'caixa']) %>
