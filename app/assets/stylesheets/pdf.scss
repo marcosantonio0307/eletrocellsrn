@@ -1,0 +1,35 @@
+* {
+	padding: 0;
+	margin: 0;
+}
+
+label {
+	font-weight: bold;
+}
+
+.header {
+	float: left;
+}
+
+.infos {
+	float: left;
+	text-align: center;
+	font-size: 1.1em;
+	margin-top: 1.5em;
+	margin-left: 7%;
+}
+
+.primary {
+	float: left;
+}
+
+.container {
+	float: left;
+	margin-top: 2em;
+	border: solid 1px;
+	padding: 1em;
+}
+
+.authentication span {
+	margin-left: 3em;
+}

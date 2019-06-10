@@ -132,7 +132,7 @@ class SalesController < ApplicationController
 		@report = true
 		@title = "Vendedor: #{salesman.first.email}"
 
-		filter(@sales, @begin_date, @end_date)
+		@sales = filter(@sales, @begin_date, @end_date)
 
 		@commission = 0
 		@sales.each do |sale|
@@ -161,7 +161,7 @@ class SalesController < ApplicationController
 		today = Time.now
 		today = today.strftime("%Y-%m-%d")
 		@sales = Sale.where(category: 'service')
-		@sales.where "created_at like ?", "%#{today}%"
+		@sales = @sales.where "created_at like ?", "%#{today}%"
 
 		render :sales_day
 	end
@@ -175,6 +175,11 @@ class SalesController < ApplicationController
 	def show
 		@sale = Sale.find(params[:id])
 		@items = Item.where(sale_id: @sale.id)
+
+		respond_to do |format|
+			format.html
+			format.pdf { render template: 'sales/print_os', pdf: 'print_os'}
+		end
 	end
 end
 

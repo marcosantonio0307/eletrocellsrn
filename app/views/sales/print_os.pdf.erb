@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Ordem de Serviço</title>
+		<%= wicked_pdf_stylesheet_link_tag 'pdf' %>
+		<meta charset="utf-8">
+	</head>
+
+	<body>
+		<div class="primary">
+			<div class="header">
+				<%= wicked_pdf_image_tag 'logo.png', :width => "250px", :height => "100px" %>
+			</div>
+			<div class="infos">
+				<span>Loja-1- Rua Avelino Freitas 393 - Centro, São Raimundo Nonato-PI </span><br>
+				<span>CNPJ: 15.027.122/0001-49</span><br>
+				<span>Telefone: 89 98108-2437 </span>
+			</div>
+			<div class="container">
+				<h4 align="center">Numero da O.S: <%= @sale.id %></h4><br>
+				<div>
+					<label>Cliente:</label>
+					<span><%= @sale.client.name %></span>
+				</div><br>
+				<div>
+					<label>Telefone:</label>
+					<span><%= @sale.client.fone %></span>
+				</div><br>
+				<div>
+					<label>Endereço:</label>
+					<span><%= @sale.client.address %></span>
+				</div><br>
+				<div>
+					<label>Data:</label>
+					<span><%= @sale.created_at.strftime("%d/%m/%Y") %></span>
+				</div><br>
+				<div>
+					<label>Vendedor:</label>
+					<span><%= @sale.user.email %></span>
+				</div><br>
+				<div>
+					<label>Descrição:</label>
+					<span><%= @sale.description %></span>
+				</div><br>
+			</div>
+		</div>
+
+		<div style="float: left; margin-bottom: 4em; margin-top: 2em; ">
+			<span>-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------</span>
+		</div>
+
+		<div class="primary">
+			<div class="header">
+				<%= wicked_pdf_image_tag 'logo.png', :width => "250px", :height => "100px" %>
+			</div>
+			<div class="infos">
+				<span>Loja-1- Rua Avelino Freitas 393 - Centro, São Raimundo Nonato-PI </span><br>
+				<span>CNPJ: 15.027.122/0001-49</span><br>
+				<span>Telefone: 89 98108-2437 </span>
+			</div>
+			<div class="container">
+				<h4 align="center">Numero da O.S: <%= @sale.id %></h4><br>
+				<div>
+					<label>Cliente:</label>
+					<span><%= @sale.client.name %></span>
+				</div><br>
+				<div>
+					<label>Telefone:</label>
+					<span><%= @sale.client.fone %></span>
+				</div><br>
+				<div>
+					<label>Endereço:</label>
+					<span><%= @sale.client.address %></span>
+				</div><br>
+				<div>
+					<label>Data:</label>
+					<span><%= @sale.created_at.strftime("%d/%m/%Y") %></span>
+				</div><br>
+				<div>
+					<label>Vendedor:</label>
+					<span><%= @sale.user.email %></span>
+				</div><br>
+				<div>
+					<label>Descrição:</label>
+					<span><%= @sale.description %></span>
+				</div><br><br><br><br>
+				<div class="authentication">
+					<span>________________________________________</span>
+					<span>________________________________________</span>
+				</div><br>
+				<div class="authentication">
+					<span style="margin-left: 20%;">Ass. Atendente</span>
+					<span style="margin-left: 35%;">Ass. Cliente</span>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

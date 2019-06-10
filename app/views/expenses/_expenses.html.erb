@@ -16,9 +16,7 @@
 			<td><%= expense.description %></td>
 			<td><%= number_to_currency expense.total %></td>
 			<td><%= expense.user.email %></td>
-			<% if @report != true %>
-				<td><%= link_to 'Exibir', expense_path(expense), class: 'btn btn-primary' %></td>
-			<% end %>
+			<td><%= link_to 'Exibir', expense_path(expense), class: 'btn btn-primary' %></td>
 			<% @total += expense.total %>
 		</tr>
 		<% end %>
