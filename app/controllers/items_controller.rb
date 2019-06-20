@@ -37,7 +37,7 @@ class ItemsController < ApplicationController
 
 			redirect_to edit_sale_path(@sale)
 		else
-			if discount < 11
+			if discount < 20
 				discount_value = unity * (discount/100)
 				price = unity - discount_value
 				price = price * amount

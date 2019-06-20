@@ -181,9 +181,16 @@ class SalesController < ApplicationController
 		@sale = Sale.find(params[:id])
 		@items = Item.where(sale_id: @sale.id)
 
-		respond_to do |format|
-			format.html
-			format.pdf { render template: 'sales/print_os', pdf: 'print_os'}
+		if @sale.category == 'service'
+			respond_to do |format|
+				format.html
+				format.pdf { render template: 'sales/print_os', pdf: 'print_os'}
+			end
+		else
+			respond_to do |format|
+				format.html
+				format.pdf { render template: 'sales/print_sale', pdf: 'print_sale'}
+			end
 		end
 	end
 end
