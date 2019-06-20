@@ -5,8 +5,10 @@
 		<th>Cliente</th>
 		<th>Vendedor</th>
 		<th>Total</th>
-		<% if @sales.first.category == 'service' %>
-			<th>Status</th>
+		<% unless @sales.empty? %>
+			<% if @sales.first.category == 'service' %>
+				<th>Status</th>
+			<% end %>
 		<% end %>
 	</thead>
 	<% @total = 0 %>

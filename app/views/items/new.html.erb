@@ -24,12 +24,10 @@
 			<%= number_field_tag :amount, 0, class: 'form-control' %>
 		</div>
 
-		<% if current_user.email == 'cesar@admin.com' || @item.product.category != 'celular' %>
-			<div class="form-group">
-				<%= label_tag 'Desconto %' %>
-				<%= number_field_tag :discount, 0, class: 'form-control', id: 'campo2' %>
-			</div>
-		<% end %>
+		<div class="form-group">
+			<%= label_tag 'Desconto %' %>
+			<%= number_field_tag :discount, 0, class: 'form-control', id: 'campo2' %>
+		</div>
 
 		<div class="form-group">
 			<%= button_to :incluir, nil, class: 'btn btn-success' %>
