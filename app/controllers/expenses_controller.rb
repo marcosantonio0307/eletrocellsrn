@@ -99,10 +99,8 @@ class ExpensesController < ApplicationController
 
 	def expenses_day
 		@title = 'Despesas do Dia'
-		today = Time.zone.now
-		today = today.strftime("%Y-%m-%d")
-
-		@expenses = Expense.where "created_at like ?", "%#{today}%"
+		@expenses = Expense.all
+		@expenses = filter_day(@expenses)
 	end
 
 	def show

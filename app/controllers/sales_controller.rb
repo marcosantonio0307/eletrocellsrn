@@ -156,19 +156,17 @@ class SalesController < ApplicationController
 	def sales_day
 		@title = 'Vendas do Dia'
 		@report = false
-		today = Time.zone.now
-		today = today.strftime("%Y-%m-%d")
 		@sales = Sale.where(category: 'sale')
-		@sales = @sales.where "created_at like '%#{today}%'"
+		filter = filter_day(@sales)
+		@sales = filter
 	end
 
 	def services_day
 		@title = 'O.S do Dia'
 		@report = false
-		today = Time.zone.now
-		today = today.strftime("%Y-%m-%d")
 		@sales = Sale.where(category: 'service')
-		@sales = @sales.where "created_at like ?", "%#{today}%"
+		filter = filter_day(@sales)
+		@sales = filter
 
 		render :sales_day
 	end
