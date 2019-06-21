@@ -28,6 +28,8 @@ Rails.application.routes.draw do
   get 'sales/new_service' => 'sales#new_service', as: :new_service_sale
   get 'sales/services' => 'sales#services'
   get 'sales/:id/finish' => 'sales#finish', as: :finish_sale
+  get 'sales/:id/search_item' => 'sales#search_item', as: :search_item_sale
+  get 'sales/:sale_id/new_select/:id' => 'items#new_select', as: :new_select_sale_item
   get 'sales/opens' => 'sales#opens'
   resources :sales do
   	resources :items
