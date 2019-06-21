@@ -157,7 +157,7 @@ class SalesController < ApplicationController
 		today = Time.zone.now
 		today = today.strftime("%Y-%m-%d")
 		@sales = Sale.where(category: 'sale')
-		@sales = @sales.where "created_at like ?", "%#{today}%"
+		@sales = @sales.where "created_at like '%#{today}%'"
 	end
 
 	def services_day

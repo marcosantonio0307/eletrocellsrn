@@ -32,50 +32,18 @@ class ItemsController < ApplicationController
 		unity = @item.product.price
 		discount = params[:discount]
 		discount = discount.to_f
+		price = unity - discount
+		price = price * amount
+		total = @sale.total
+		total += price
 
-		if current_user.email == 'cesar@admin.com'
-			discount_value = unity * (discount/100)
-			price = unity - discount_value
-			price = price * amount
-			total = @sale.total
-			total += price
+		@sale.update(total: total)
+		@item.update(amount: amount, price: price, discount: discount)
 
-			@sale.update(total: total)
-			@item.update(amount: amount, price: price, discount: discount)
+		new_amount = @item.product.amount - amount
+		@item.product.update(amount:  new_amount)
 
-			new_amount = @item.product.amount - amount
-			@item.product.update(amount:  new_amount)
-
-			redirect_to edit_sale_path(@sale)
-		else
-			if discount < 101
-				discount_value = unity * (discount/100)
-				price = unity - discount_value
-				price = price * amount
-				total = @sale.total
-				total += price
-
-				@sale.update(total: total)
-				@item.update(amount: amount, price: price, discount: discount)
-
-				new_amount = @item.product.amount - amount
-				@item.product.update(amount:  new_amount)
-
-				redirect_to edit_sale_path(@sale)
-			else
-				price = unity * amount
-				total = @sale.total
-				total += price
-
-				@sale.update(total: total)
-				@item.update(amount: amount, price: price, discount: 0)
-
-				new_amount = @item.product.amount - amount
-				@item.product.update(amount:  new_amount)
-
-				redirect_to edit_sale_path(@sale), notice: 'Desconto não aplicado! Maior do que o Permitido!'
-			end
-		end
+		redirect_to edit_sale_path(@sale), notice: 'Item Incluído com Sucesso!'
 	end
 
 	def destroy
