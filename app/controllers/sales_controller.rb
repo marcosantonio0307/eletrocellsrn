@@ -171,6 +171,12 @@ class SalesController < ApplicationController
 		render :sales_day
 	end
 
+	def search_item
+		@sale = Sale.find(params[:id])
+		@name = params[:name]
+		@products = Product.where "name like ?", "%#{@name}%"
+	end
+
 	def destroy
 		id = params[:id]
 		Sale.destroy id

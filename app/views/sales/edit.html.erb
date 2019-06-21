@@ -18,7 +18,7 @@
 	</div>
 
 	<div style="float: right; margin-bottom: 0.5em;">
-		<%= form_tag search_products_path, method: :get do %>
+		<%= form_tag search_item_sale_path(@sale), method: :get do %>
 			<%= text_field_tag :name, @name %>
 			<%= button_to 'Buscar', nil, class: 'btn btn-success' %>
 		<% end %>

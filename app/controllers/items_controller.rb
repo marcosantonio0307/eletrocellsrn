@@ -12,6 +12,17 @@ class ItemsController < ApplicationController
 		end
 	end
 
+	def new_select
+		@sale = Sale.find(params[:sale_id])
+		product = Product.find(params[:id])
+		if product.amount > 0
+			@item = Item.create
+			@item.update(sale: @sale, product: product)
+		else
+			redirect_to edit_sale_path(@sale), notice: 'Produto com Estoque Zerado!'
+		end
+	end
+
 	def add
 		@sale = Sale.find(params[:sale_id]) #set
 		@item = Item.find(params[:id])
@@ -37,7 +48,7 @@ class ItemsController < ApplicationController
 
 			redirect_to edit_sale_path(@sale)
 		else
-			if discount < 20
+			if discount < 50
 				discount_value = unity * (discount/100)
 				price = unity - discount_value
 				price = price * amount

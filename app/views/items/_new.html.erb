@@ -1,0 +1,59 @@
+<div class="form-new">
+
+	<div class="form-group">
+	<%= label_tag :sku %>
+	<%= text_field_tag :sku, @item.product.sku, :disabled=>true, class: 'form-control' %>
+	</div>
+
+	<div class="form-group">
+	<%= label_tag :produto %>
+	<%= text_field_tag :product, @item.product.name, :disabled=>true, class: 'form-control' %>
+	</div>
+
+	<div class="form-group">
+		<%= label_tag :preço %>
+		<%= text_field_tag :price, number_to_currency(@item.product.price), :disabled=>true, class: 'form-control' %>
+	</div>
+
+	<div style="visibility: hidden;"><%= text_field_tag :value, @item.product.price, id: 'campo1' %></div>
+
+
+	<%= form_tag add_sale_item_path(@sale, @item) do %>
+		<div class="form-group">
+			<%= label_tag :quantidade %>
+			<%= number_field_tag :amount, 0, class: 'form-control' %>
+		</div>
+
+		<div class="form-group">
+			<%= label_tag 'Desconto %' %>
+			<%= number_field_tag :discount, 0, class: 'form-control', id: 'campo2' %>
+		</div>
+
+		<div class="form-group">
+			<%= button_to :incluir, nil, class: 'btn btn-success' %>
+		</div>
+	<% end %>
+
+	<div style="float: right;">
+		<button id="calcula">Desconto</button>
+		Valor: <span id="resultado">0</span>
+	</div>
+	
+</div>
+
+
+<script type="text/javascript">
+
+	window.onload = function(){
+
+		var i = function(id){ return document.getElementById(id); }
+
+		i("calcula").onclick = function(){
+			var c1 = i("campo1").value;
+			var c2 = i("campo2").value;
+			var discount = c1 * (c2/100)
+			i("resultado").innerHTML = parseFloat(c1) - discount;
+		}
+	}
+
+</script>
