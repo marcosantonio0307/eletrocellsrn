@@ -1,10 +1,10 @@
 class CashController < ApplicationController
 
 	def index
-		today = Time.zone.now
-		today = today.strftime("%Y-%m-%d")
-		cash_receipts = Sale.where "created_at like ?", "%#{today}%"
-		cash_outflows = Expense.where "created_at like ?", "%#{today}%"
+		@sales = Sale.all
+		@expenses = Expense.all
+		cash_receipts = filter_day(@sales)
+		cash_outflows = filter_day(@expenses)
 		@total_cash_receipts = 0
 		@total_cash_outflows = 0
 
@@ -13,7 +13,6 @@ class CashController < ApplicationController
 		else
 			@begin_value = 200
 		end
-		
 
 		cash_receipts.each do |cash|
 			@total_cash_receipts += cash.total
@@ -24,7 +23,8 @@ class CashController < ApplicationController
 		end
 
 		@current_cash = @total_cash_receipts + @begin_value - @total_cash_outflows
-		@today_cash = Cash.where "created_at like ?", "%#{today}%"
+		cashes = Cash.all
+		@today_cash = filter_day(cashes)
 	end
 
 	def new
@@ -73,9 +73,8 @@ class CashController < ApplicationController
 	end
 	
 	def reopen
-		today = Time.zone.now
-		today = today.strftime("%Y-%m-%d")
-		cash = Cash.where "created_at like ?", "%#{today}%"
+		cashes = Cash.all
+		cash = filter_day(cashes)
 
 		if cash != []
 			cash.first.destroy
