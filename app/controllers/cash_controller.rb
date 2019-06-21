@@ -1,7 +1,7 @@
 class CashController < ApplicationController
 
 	def index
-		today = Time.now
+		today = Time.zone.now
 		today = today.strftime("%Y-%m-%d")
 		cash_receipts = Sale.where "created_at like ?", "%#{today}%"
 		cash_outflows = Expense.where "created_at like ?", "%#{today}%"
@@ -73,7 +73,7 @@ class CashController < ApplicationController
 	end
 	
 	def reopen
-		today = Time.now
+		today = Time.zone.now
 		today = today.strftime("%Y-%m-%d")
 		cash = Cash.where "created_at like ?", "%#{today}%"
 

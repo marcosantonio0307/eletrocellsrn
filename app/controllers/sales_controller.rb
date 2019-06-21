@@ -154,7 +154,7 @@ class SalesController < ApplicationController
 	def sales_day
 		@title = 'Vendas do Dia'
 		@report = false
-		today = Time.now
+		today = Time.zone.now
 		today = today.strftime("%Y-%m-%d")
 		@sales = Sale.where(category: 'sale')
 		@sales = @sales.where "created_at like ?", "%#{today}%"
@@ -163,7 +163,7 @@ class SalesController < ApplicationController
 	def services_day
 		@title = 'O.S do Dia'
 		@report = false
-		today = Time.now
+		today = Time.zone.now
 		today = today.strftime("%Y-%m-%d")
 		@sales = Sale.where(category: 'service')
 		@sales = @sales.where "created_at like ?", "%#{today}%"
