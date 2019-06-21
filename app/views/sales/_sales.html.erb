@@ -20,8 +20,10 @@
 			<td><%= sale.client.name %></td>
 			<td><%= sale.user.email %></td>
 			<td><%= number_to_currency sale.total %></td>
-			<% if sale.category == 'service' %>
-				<td><%= sale.status %></td>
+			<% unless @sales.empty? %>
+				<% if sale.category == 'service' %>
+					<td><%= sale.status %></td>
+				<% end %>
 			<% end %>
 			<% if @report != true %>
 				<td><%= link_to 'Exibir', sale_path(sale), class: 'btn btn-primary' %></td>
