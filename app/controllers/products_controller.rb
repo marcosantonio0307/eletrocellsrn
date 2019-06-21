@@ -97,7 +97,7 @@ class ProductsController < ApplicationController
 	end
 
 	def inventory
-		today = Time.now
+		today = Time.zone.now
 		today = today.strftime("%Y-%m-%d")
 		@sales = Sale.where "created_at like ?", "%#{today}%"
 		@products = []
