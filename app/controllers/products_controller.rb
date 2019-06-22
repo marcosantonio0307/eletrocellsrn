@@ -157,6 +157,7 @@ class ProductsController < ApplicationController
 
 	def search
 		@name = params[:name]
+		@name.upcase!
 		@products = Product.where "name like ?", "%#{@name}%"
 	end
 

@@ -106,7 +106,7 @@ class SalesController < ApplicationController
 		@begin_date = params[:begin_date]
 		@end_date = params[:end_date]
 		
-		filter(@sales, @begin_date, @end_date)
+		@sales = filter(@sales, @begin_date, @end_date)
 	end
 
 	def search
@@ -125,7 +125,7 @@ class SalesController < ApplicationController
 		@end_date = params[:end_date]
 		@sellers = User.all
 		@sales = Sale.where(category: 'sale')
-		filter(@sales, @begin_date, @end_date)
+		@sales = filter(@sales, @begin_date, @end_date)
 	end
 
 	def report_commission
@@ -174,6 +174,7 @@ class SalesController < ApplicationController
 	def search_item
 		@sale = Sale.find(params[:id])
 		@name = params[:name]
+		@name.upcase!
 		@products = Product.where "name like ?", "%#{@name}%"
 	end
 
