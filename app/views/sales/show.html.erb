@@ -22,8 +22,8 @@
 		<% if @sale.status == 'aberta' %>
 			<span><%= link_to 'Finalizar O.S', finish_sale_path(@sale), class: 'btn btn-success' %></span>
 		<% end %>
-		<span><%= link_to (image_tag 'imprimir.png', :width => '40px', :height => '40px'), "#{@sale.id}.pdf" %></span>
 	<% end %>
+	<span><%= link_to (image_tag 'imprimir.png', :width => '40px', :height => '40px'), "#{@sale.id}.pdf" %></span>
 </div>
 
 <div class="form-new">

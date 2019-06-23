@@ -57,6 +57,7 @@ class ClientsController < ApplicationController
 
 	def search
 		@name = params[:name]
+		@name.upcase!
 		@clients = Client.where "name like ?", "%#{@name}%"
 	end
 

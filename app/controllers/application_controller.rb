@@ -11,5 +11,6 @@ class ApplicationController < ActionController::Base
 			end
 		end
 		base = filter
+		base.sort!
 	end
 end
