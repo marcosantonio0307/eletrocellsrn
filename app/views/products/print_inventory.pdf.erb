@@ -3,14 +3,28 @@
 <head>
 	<title>Inventario</title>
 	<meta charset="utf-8">
-	<%= wicked_pdf_stylesheet_link_tag 'bootstrap_and_overrides' %>
+	<style type="text/css">
+		.table {
+			width: 100%;
+			border-collapse: collapse;
+		}
+
+		.table th {
+			border: solid 1px;
+		}
+
+		.table td {
+			border: solid 1px;
+			text-align: center;
+		}
+	</style>
 </head>
 <body>
 	<h2 align="center">Inventário do Dia</h2>
 	<h4 align="center"><%= Time.now.strftime("%d/%m/%Y") %></h4>
 	<br><br><br><br>
 
-	<table class="table table-bordered">
+	<table class="table">
 		<thead>
 			<th>SKU</th>
 			<th>Produto</th>

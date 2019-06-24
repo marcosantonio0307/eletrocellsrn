@@ -26,6 +26,7 @@ class ExpensesController < ApplicationController
 
 	def index	
 		@expenses = Expense.all
+		@expenses = @expenses.order :id
 		@title = 'Minhas Despesas'
 		@report = true
 	end
