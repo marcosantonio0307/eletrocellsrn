@@ -2,12 +2,14 @@ class SalesController < ApplicationController
 
 	def index
 		@sales = Sale.where(category: 'sale')
+		@sales = @sales.order :id
 		@report = false
 		@title = 'Vendas'
 	end
 
 	def services
 		@sales = Sale.where(category: 'service')
+		@sales = @sales.order :id
 		@report = false
 		@title = 'Ordens de Serviço'
 		render :index
