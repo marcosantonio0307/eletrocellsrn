@@ -49,6 +49,8 @@ class ProductsController < ApplicationController
 			@message = 'SKU já Cadastrado!'
 			render :new
 		else
+			@product.sku.upcase!
+			@product.name.upcase!
 			@product.save
 			if @product.save
 				redirect_to products_path, notice: 'Produto  Criado com Sucesso!'

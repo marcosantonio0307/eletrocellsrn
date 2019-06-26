@@ -21,6 +21,7 @@ class ClientsController < ApplicationController
 			@message = 'CPF ja cadastrado!'
 			render :new
 		else
+			@client.name.upcase!
 			@client.save
 			if @client.save
 				redirect_to client_path(@client), notice: 'Cliente Cadastrado com Sucesso!'
