@@ -4,7 +4,7 @@
 
 <div class="form-new">
 
-	<%= form_tag search_clients_path, method: :get, class: 'navbar-form navbar-right' do %>
+	<%= form_tag search_client_sale_path(@sale), method: :get, class: 'navbar-form navbar-right' do %>
 		<div>
 			<%= text_field_tag :name, @name, class: 'form-control' %>
 			<%= button_to 'Buscar', nil, class: 'btn btn-success' %>
@@ -21,6 +21,7 @@
 
 		<div class="form-group">
 			<%= submit_tag :selecionar, class: 'btn btn-primary' %>
+			<%= link_to :cancelar, cancel_sale_path(@sale), class: 'btn btn-danger', data:{confirm: 'Deseja Cancelar Esta Venda?'} %>
 		</div>
 	<% end %>
 </div>

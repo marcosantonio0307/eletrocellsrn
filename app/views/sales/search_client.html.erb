@@ -1,0 +1,36 @@
+<div class="label">
+	<span>Meus Clientes</span>
+</div>
+
+<%= form_tag search_client_sale_path, method: :get, class: 'navbar-form navbar-right' do %>
+	<div>
+		<input type='button' value='Voltar' onclick='history.go(-1)' class="btn btn-default" />
+		<%= text_field_tag :name, @name, class: 'form-control' %>
+	</div>
+<% end %> 
+
+<div>
+	<table class="table table-bordered">
+		<thead>
+			<th>Nome</th>
+			<th>CPF/RG</th>
+			<th>Telefone</th>
+			<th>Endereço</th>
+			<th>Bairro</th>
+			<th>Cidade</th>
+		</thead>
+		<% @clients.each do |client| %>
+		<tbody>
+			<tr>
+				<td><%= client.name %></td>
+				<td><%= client.cpf %></td>
+				<td><%= client.fone %></td>
+				<td><%= client.address %></td>
+				<td><%= client.district %></td>
+				<td><%= client.city %></td>
+				<td><%= link_to 'Selecionar', select_client_sale_path(@sale, client), class: 'btn btn-primary' %></td>
+			</tr>
+		</tbody>
+		<% end %>
+	</table>
+</div>

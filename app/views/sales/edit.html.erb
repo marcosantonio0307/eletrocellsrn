@@ -41,6 +41,7 @@
 			<% end %>
 			
 			<%= f.submit :salvar, class: 'btn btn-success' %>
+			<%= link_to :cancelar, cancel_sale_path(@sale), class: 'btn btn-danger', data:{confirm: 'Deseja Cancelar Esta Venda?'} %>
 		</div>
 	<% end %>
 </div>

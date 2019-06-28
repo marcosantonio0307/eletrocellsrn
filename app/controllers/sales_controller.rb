@@ -58,6 +58,9 @@ class SalesController < ApplicationController
 		redirect_to client_sale_path(@sale)
 	end
 
+	def client
+		@sale = Sale.find(params[:id])
+	end
 	
 	def select
 		@sale = Sale.find(params[:id])
@@ -76,6 +79,13 @@ class SalesController < ApplicationController
 		end
 	end
 
+	def select_client
+		@sale = Sale.find(params[:sale_id])
+		client = Client.find(params[:id])
+		@sale.update(client_id: client.id)
+		redirect_to edit_sale_path(@sale)
+	end
+
 	def edit
 		@sale = Sale.find(params[:id])
 		@items = Item.where(sale_id: @sale.id)
@@ -89,10 +99,22 @@ class SalesController < ApplicationController
 			@sale.update(description: description, status: status)
 		end
 
-		if @sale.category == 'sale'
-			redirect_to sales_sales_day_path, notice: 'Venda Salva com Sucesso!'
+		redirect_to print_sale_path(@sale), notice: 'Venda Salva com Sucesso!'
+	end
+
+	def print
+		@sale = Sale.find(params[:id])
+
+		if @sale.category == 'service'
+			respond_to do |format|
+				format.html
+				format.pdf { render template: 'sales/print_os', pdf: 'print_os'}
+			end
 		else
-			redirect_to sales_services_day_path, notice: 'O.S Salva com Sucesso!'
+			respond_to do |format|
+				format.html
+				format.pdf { render template: 'sales/print_sale', pdf: 'print_sale'}
+			end
 		end
 	end
 
@@ -173,6 +195,13 @@ class SalesController < ApplicationController
 		render :sales_day
 	end
 
+	def search_client
+		@sale = Sale.find(params[:id])
+		@name = params[:name]
+		@name.upcase!
+		@clients = Client.where "name like ?", "%#{@name}%"
+	end
+
 	def search_item
 		@sale = Sale.find(params[:id])
 		@name = params[:name]
@@ -180,10 +209,28 @@ class SalesController < ApplicationController
 		@products = Product.where "name like ?", "%#{@name}%"
 	end
 
+	def cancel
+		@sale = Sale.find(params[:id])
+		if @sale.item.empty? == true
+			@sale.destroy
+			redirect_to sales_sales_day_path, notice: 'Venda Cancelada!'
+		else
+			@sale.item.each do |item|
+				if item.amount != nil
+					amount = item.amount #retorna a quantidade do produto para o estoque quando remove-o da lista
+					new_amount = item.product.amount + amount
+					item.product.update(amount: new_amount)
+				end
+			end
+			@sale.destroy
+			redirect_to sales_sales_day_path, notice: 'Venda Cancelada!'
+		end
+	end
+
 	def destroy
 		id = params[:id]
 		Sale.destroy id
-		redirect_to sales_path, notice: 'Venda Excluída com Sucesso!'
+		redirect_to sales_sales_day_path, notice: 'Venda Excluída com Sucesso!'
 	end
 
 	def show

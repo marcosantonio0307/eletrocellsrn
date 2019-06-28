@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
 	def new
 		@sale = Sale.find(params[:sale_id])
 		sku = params[:sku].strip
+		sku.upcase!
 		item = Product.where "sku like ?", "%#{sku}%"
 
 		if item.first.amount > 0
