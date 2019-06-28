@@ -1,0 +1,12 @@
+<div class="form-new">
+	<% if @sale.category == 'sale' %>
+		<h3 align="center">Deseja Imprimir o Cupom?</h3>
+	<% else %>
+		<h3 align="center">Deseja Imprimir o O.S?</h3>
+	<% end %>
+	<div align="center">
+		<%= link_to :sim, ("/sales/#{@sale.id}.pdf"), method: :get, class: 'btn btn-success' %>
+		<span style="margin: 0 0.5em;"></span>
+		<%= link_to :nao, sales_sales_day_path, class: 'btn btn-danger' %>
+	</div>
+</div>

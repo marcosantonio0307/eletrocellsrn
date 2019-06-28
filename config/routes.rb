@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
   get 'sales/filter_date' => 'sales#filter_date'
   get 'sales/sales' => 'sales#sales'
+  get 'sales/:id/print' => 'sales#print', as: :print_sale
   get 'sales/search' => 'sales#search'
   get 'sales/salesman' => 'sales#salesman'
   get 'sales/report_salesman' => 'sales#report_salesman'
@@ -29,7 +30,10 @@ Rails.application.routes.draw do
   get 'sales/services' => 'sales#services'
   get 'sales/:id/finish' => 'sales#finish', as: :finish_sale
   get 'sales/:id/search_item' => 'sales#search_item', as: :search_item_sale
+  get 'sales/:id/search_client' => 'sales#search_client', as: :search_client_sale
   get 'sales/:sale_id/new_select/:id' => 'items#new_select', as: :new_select_sale_item
+  get 'sales/:sale_id/select_client/:id' => 'sales#select_client', as: :select_client_sale
+  get 'sales/:id/cancel' => 'sales#cancel', as: :cancel_sale
   get 'sales/opens' => 'sales#opens'
   resources :sales do
   	resources :items
