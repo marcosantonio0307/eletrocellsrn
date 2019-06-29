@@ -33,7 +33,7 @@ body {
 	margin-top: 0;
 	width: 100%;
 	height: 40px;
-	background: #D72229;
+	background: #222;
 	font-family: "Arial";
 	padding-left: 15%;
 }
@@ -53,7 +53,7 @@ body {
 	display: block;
 	text-decoration: none;
 	text-align: center;
-	background: #D72229;
+	background: #222;
 	color: white;
 }
 
@@ -146,7 +146,7 @@ label[for="bt_menu"] {
 #barra_de_logo {
 	width: 100%;
 	height: 100px;
-	background-image: linear-gradient(to top, white,  #D72229);
+	background-image: linear-gradient(to top, white,  #222);
 	color: white;
 	margin-bottom: 0;
 }
@@ -267,7 +267,7 @@ label[for="bt_menu"] {
 }
 
 .label span {
-	background: #D72229;
+	background: #222;
 	padding: 0.2em 2em;	
 }
 
