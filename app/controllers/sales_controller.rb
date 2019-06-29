@@ -238,9 +238,16 @@ class SalesController < ApplicationController
 		@items = Item.where(sale_id: @sale.id)
 
 		if @sale.category == 'service'
-			respond_to do |format|
-				format.html
-				format.pdf { render template: 'sales/print_os', pdf: 'print_os'}
+			if @sale.status == 'aberta'
+				respond_to do |format|
+					format.html
+					format.pdf { render template: 'sales/print_os', pdf: 'print_os'}
+				end
+			else
+				respond_to do |format|
+					format.html
+					format.pdf { render template: 'sales/print_os_finish', pdf: 'print_os_finish'}
+				end
 			end
 		else
 			respond_to do |format|
