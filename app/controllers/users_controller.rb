@@ -27,8 +27,13 @@ class UsersController < ApplicationController
 		category = params[:category]
 		name = params[:name]
 		if password != ''
-			user.update(password: password, category: category, name: name)
-			redirect_to root_path, notice: 'Alterado com Sucesso!'
+			if category != nil
+				user.update(password: password, category: category, name: name)
+				redirect_to root_path, notice: 'Alterado com Sucesso!'
+			else
+				user.update(password: password)
+				redirect_to root_path, notice: 'Alterado com Sucesso!'
+			end
 		else
 			render :edit
 		end
