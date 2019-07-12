@@ -169,11 +169,14 @@ class SalesController < ApplicationController
 		@sales.each do |sale|
 			sale.item.each do |item|
 				if item.product.category != 'celular'
-					@commission += item.price
+					if item.price != nil
+						@commission += item.price
+					end
 				end
 			end
 		end
 		
+		@total_sales = @commission
 		@commission = @commission * (@percentage/100)
 	end
 

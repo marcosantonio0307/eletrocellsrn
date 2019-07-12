@@ -14,4 +14,43 @@
 	<span>Relação das Vendas no Período</span>
 </div>
 
-<%= render 'sales' %>
+<table class="table table-bordered">
+	<thead>
+		<th>Venda</th>
+		<th>Data</th>
+		<th>Cliente</th>
+		<th>Vendedor</th>
+		<th>Total</th>
+		<% unless @sales.empty? %>
+			<% if @sales.first.category == 'service' %>
+				<th>Status</th>
+			<% end %>
+		<% end %>
+	</thead>
+	<% @total = 0 %>
+	<% @sales.each do |sale| %>
+	<tbody>
+		<tr>
+			<td><%= sale.id %></td>
+			<td><%= sale.created_at.strftime("%d/%m/%Y") %></td>
+			<td><%= sale.client.name %></td>
+			<td><%= sale.user.email %></td>
+			<td><%= number_to_currency sale.total %></td>
+			<% unless @sales.empty? %>
+				<% if sale.category == 'service' %>
+					<td><%= sale.status %></td>
+				<% end %>
+			<% end %>
+			<% if @report != true %>
+				<td><%= link_to 'Exibir', sale_path(sale), class: 'btn btn-primary' %></td>
+			<% end %>
+			<% @total += sale.total %>
+		</tr>
+	</tbody>
+	<% end %>
+</table>
+
+<div class="navbar navbar-right">
+	<%= label_tag :total %>
+	<%= text_field_tag :total, number_to_currency(@total_sales), :disabled=>true %>
+</div>

@@ -36,5 +36,5 @@
 
 <div class="navbar navbar-right">
 	<%= label_tag :total %>
-	<%= text_field_tag :total, number_to_currency(@total) %>
+	<%= text_field_tag :total, number_to_currency(@total), :disabled=>true %>
 </div>
