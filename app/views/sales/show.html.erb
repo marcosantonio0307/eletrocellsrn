@@ -18,7 +18,7 @@
 	<span><input type='button' value='Voltar' onclick='history.go(-1)' class="btn btn-default" /></span>
 	<% if admin?(current_user) %>
 		<span><%= link_to 'Editar', edit_sale_path(@sale), class: 'btn btn-warning' %></span>
-		<span><%= link_to 'Excluir', sale_path(@sale), method: :delete, class: 'btn btn-danger', data:{confirm: 'Deseja Excluir a Venda?'} %></span>
+		<span><%= link_to 'Excluir', cancel_sale_path(@sale), class: 'btn btn-danger', data:{confirm: 'Deseja Excluir a Venda?'} %></span>
 		<% if @sale.status == 'aberta' %>
 			<span><%= link_to 'Finalizar O.S', finish_sale_path(@sale), class: 'btn btn-success' %></span>
 		<% end %>
