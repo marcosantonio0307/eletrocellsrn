@@ -7,7 +7,6 @@
 			<th>Desconto R$</th>
 			<th>Total</th>
 		</thead>
-		<% @total = 0 %>
 		<% @items.each do |item| %> 
 			<tbody>
 				<tr>
@@ -19,14 +18,11 @@
 					<td id="hide"><%= button_to 'Remover', sale_item_path(@sale, item), method: :delete, class: 'btn btn-danger' %></td>
 				</tr>
 			</tbody>
-			<% if item.price != nil %>
-				<% @total += item.price %>
-			<% end %>
 		<% end %>
 	</table>
 
 		<div style="padding-left: 70%; smargin-bottom: 2em;">
 			<span><%= label_tag :total %></span>
-			<span><%= text_field_tag :total, number_to_currency(@total), :disabled=>true %></span>	
+			<span><%= text_field_tag :total, number_to_currency(@sale.total), :disabled=>true %></span>	
 		</div>
 </div>
