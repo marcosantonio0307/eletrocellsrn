@@ -1,11 +1,14 @@
 class CashController < ApplicationController
 
 	def index
-		@sales = Sale.all
+		@sales = Sale.where(category: 'sale')
+		@services = Sale.where(category: 'service')
 		@expenses = Expense.all
-		cash_receipts = filter_day(@sales)
+		cash_sales = filter_day(@sales)
+		cash_services = filter_day(@services)
 		cash_outflows = filter_day(@expenses)
-		@total_cash_receipts = 0
+		@total_cash_sales = 0
+		@total_cash_services = 0
 		@total_cash_outflows = 0
 
 		if Cash.last != nil
@@ -14,15 +17,19 @@ class CashController < ApplicationController
 			@begin_value = 200
 		end
 
-		cash_receipts.each do |cash|
-			@total_cash_receipts += cash.total
+		cash_sales.each do |cash|
+			@total_cash_sales += cash.total
+		end
+
+		cash_services.each do |cash|
+			@total_cash_services += cash.total
 		end
 
 		cash_outflows.each do |cash|
 			@total_cash_outflows += cash.total
 		end
 
-		@current_cash = @total_cash_receipts + @begin_value - @total_cash_outflows
+		@current_cash = @total_cash_sales + @total_cash_services + @begin_value - @total_cash_outflows
 		cashes = Cash.all
 		@today_cash = filter_day(cashes)
 	end
