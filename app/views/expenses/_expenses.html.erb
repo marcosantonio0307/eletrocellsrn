@@ -14,10 +14,16 @@
 			<td><%= expense.created_at.strftime("%d/%m/%Y") %></td>
 			<td><%= expense.category %></td>
 			<td><%= expense.description %></td>
-			<td><%= number_to_currency expense.total %></td>
+			<td>
+				<% if expense.total != nil %>
+					<%= number_to_currency expense.total %>
+				<% end %>
+			</td>
 			<td><%= expense.user.email %></td>
 			<td><%= link_to 'Exibir', expense_path(expense), class: 'btn btn-primary' %></td>
-			<% @total += expense.total %>
+			<% if expense.total != nil %>
+				<% @total += expense.total %>
+			<% end %>
 		</tr>
 		<% end %>
 	</tbody>

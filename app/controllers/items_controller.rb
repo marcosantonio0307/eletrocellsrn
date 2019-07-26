@@ -28,18 +28,14 @@ class ItemsController < ApplicationController
 		@sale = Sale.find(params[:sale_id]) #set
 		@item = Item.find(params[:id])
 
-		amount = params[:amount] 
-		amount = amount.to_i
+		amount = params[:amount].to_i
 		unity = @item.product.price
-		discount = params[:discount]
-		discount = discount.to_f
+		discount = params[:discount].to_f
 		price = unity - discount
 		price = price * amount
-		total = @sale.total
-		total += price
 
-		@sale.update(total: total)
 		@item.update(amount: amount, price: price, discount: discount)
+		@sale.update_total
 
 		new_amount = @item.product.amount - amount
 		@item.product.update(amount:  new_amount)
@@ -58,13 +54,9 @@ class ItemsController < ApplicationController
 			item.product.update(amount: new_amount)
 		end
 
-		if item.price != nil
-			price = item.price #atualiza o valor da venda sem o item removido
-			new_total = @sale.total - price
-			@sale.update(total: new_total)
-		end
-
 		Item.destroy id
+		@sale.update_total
 		redirect_to edit_sale_path(@sale)
 	end
+
 end
