@@ -31,8 +31,8 @@ class ItemsController < ApplicationController
 		amount = params[:amount].to_i
 		unity = @item.product.price
 		discount = params[:discount].to_f
-		price = unity - discount
-		price = price * amount
+		price = unity * amount
+		price = price - discount
 
 		@item.update(amount: amount, price: price, discount: discount)
 		@sale.update_total
