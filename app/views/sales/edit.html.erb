@@ -39,6 +39,16 @@
 					<%= f.select_tag :status, options_for_select(['aberta', 'fechada']) %>
 				</div><br>
 			<% end %>
+			<% if @cell == true %>
+				<div>
+					<%= f.label :IMEI %>
+					<%= f.text_field_tag :imei, @sale.imei, class: 'form-control' %>
+				</div><br>
+				<div>
+					<%= f.label :garantia %>
+					<%= f.text_field_tag :warrenty, @sale.warrenty, class: 'form-control' %>
+				</div><br>
+			<% end %>
 			
 			<%= f.submit :salvar, class: 'btn btn-success' %>
 			<%= link_to :cancelar, cancel_sale_path(@sale), class: 'btn btn-danger', data:{confirm: 'Deseja Cancelar Esta Venda?'} %>

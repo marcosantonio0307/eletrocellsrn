@@ -7,8 +7,12 @@
 			<th>Desconto R$</th>
 			<th>Total</th>
 		</thead>
+		<% @cell = false %>
 		<% @items.each do |item| %> 
 			<tbody>
+				<% if @cell == false && item.product.category == 'celular' %>
+					<% @cell = true %>
+				<% end %>
 				<tr>
 					<td><%= item.product.name %></td>
 					<td><%= item.amount %></td>
