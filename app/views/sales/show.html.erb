@@ -34,30 +34,39 @@
 	</div><br>
 
 	<% if @sale.category == 'service' %>
-	<div class="form-group">
-		<%= label_tag :telefone %>
-		<%= text_field_tag :fone, @sale.client.fone, class: 'form-control', :disabled=>true %>
-	</div><br>
+		<div class="form-group">
+			<%= label_tag :telefone %>
+			<%= text_field_tag :fone, @sale.client.fone, class: 'form-control', :disabled=>true %>
+		</div><br>
 
-	<div class="form-group">
-		<%= label_tag :endereco %>
-		<%= text_field_tag :address, @sale.client.address, class: 'form-control', :disabled=>true %>
-	</div><br>
+		<div class="form-group">
+			<%= label_tag :endereco %>
+			<%= text_field_tag :address, @sale.client.address, class: 'form-control', :disabled=>true %>
+		</div><br>
 	<% end %>
 
 	<%= render 'items' %>
 
 	<% if @sale.category == 'service' %>
-	<div class="form-group">
-		<%= label_tag :descricao %>
-		<%= text_area_tag :description, @sale.description, class: 'form-control', :disabled=>true %>
-	</div>
+		<div class="form-group">
+			<%= label_tag :descricao %>
+			<%= text_area_tag :description, @sale.description, class: 'form-control', :disabled=>true %>
+		</div>
+		<div class="form-group">
+			<%= label_tag :status %>
+			<%= text_field_tag :status, @sale.status, class: 'form-control', :disabled=>true %>
+		</div>
+	<% end %>
 
-	<div class="form-group">
-		<%= label_tag :status %>
-		<%= text_field_tag :status, @sale.status, class: 'form-control', :disabled=>true %>
-	</div>
-
+	<% if @sale.imei != nil %>
+		<div class="form-group">
+			<%= label_tag :IMEI %>
+			<%= text_field_tag :imei, @sale.imei, class: 'form-control', :disabled=>true %>
+		</div>
+		<div class="form-group">
+			<%= label_tag :Garantia %>
+			<%= text_field_tag :warrenty, @sale.warrenty, class: 'form-control', :disabled=>true %>
+		</div>
 	<% end %>
 
 </div>
