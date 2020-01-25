@@ -3,25 +3,34 @@
 </div>
 
 <div class="form-new">
+	<p>
+		<%= link_to cancel_sale_path(@sale), data:{confirm: 'Deseja Cancelar Esta Venda?'} do %>
+			<i class="fa fa-window-close btn-icon"></i>
+		<% end %>
+		<input type="text" id="search" placeholder="Buscar Cliente" style="float: right; margin-bottom: 1em;">
+	</p>
 
-	<%= form_tag search_client_sale_path(@sale), method: :get, class: 'navbar-form navbar-right' do %>
-		<div>
-			<%= text_field_tag :name, @name, class: 'form-control' %>
-			<%= button_to 'Buscar', nil, class: 'btn btn-success' %>
-	</div><br>
-	<% end %> 
-
-	<%= form_tag select_sale_path do %>
-
-		<div class="form-group">
-			<br>
-			<%= label_tag :cpf %>
-			<%= text_field_tag :cpf, nil, class: 'form-control' %>
-		</div> 
-
-		<div class="form-group">
-			<%= submit_tag :selecionar, class: 'btn btn-primary' %>
-			<%= link_to :cancelar, cancel_sale_path(@sale), class: 'btn btn-danger', data:{confirm: 'Deseja Cancelar Esta Venda?'} %>
-		</div>
-	<% end %>
+	<div>
+		<table class="table table-bordered">
+			<thead>
+				<th>Nome</th>
+				<th>CPF/RG</th>
+				<th>Cidade</th>
+			</thead>
+			<% @clients.each do |client| %>
+			<tbody id="table">
+				<tr>
+					<td><%= client.name %></td>
+					<td><%= client.cpf %></td>
+					<td><%= client.city %></td>
+					<td class="options-btn">
+						<%= link_to select_client_sale_path(@sale, client) do %>
+							<i class="fa fa-external-link-square"></i>
+						<% end %>
+					</td>
+				</tr>
+			</tbody>
+			<% end %>
+		</table>
+	</div>
 </div>

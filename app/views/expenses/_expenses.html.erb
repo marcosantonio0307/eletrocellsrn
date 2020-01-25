@@ -20,7 +20,11 @@
 				<% end %>
 			</td>
 			<td><%= expense.user.email %></td>
-			<td><%= link_to 'Exibir', expense_path(expense), class: 'btn btn-primary' %></td>
+			<td class="options-btn">
+				<%= link_to expense_path(expense) do %>
+					<i class="fa fa-eye"></i>
+				<% end %>
+			</td>
 			<% if expense.total != nil %>
 				<% @total += expense.total %>
 			<% end %>
@@ -29,9 +33,7 @@
 	</tbody>
 </table>
 
-<% if @report == true %>
-	<div class="navbar navbar-right">
-		<%= label_tag :total %>
-		<%= text_field_tag :total, number_to_currency(@total) %>
-	</div>
-<% end %>
+<div class="navbar navbar-right">
+	<%= label_tag :total %>
+	<%= text_field_tag :total, number_to_currency(@total), disabled: true %>
+</div>

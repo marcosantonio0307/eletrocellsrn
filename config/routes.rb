@@ -30,7 +30,6 @@ Rails.application.routes.draw do
   get 'sales/services' => 'sales#services'
   get 'sales/:id/finish' => 'sales#finish', as: :finish_sale
   get 'sales/:id/search_item' => 'sales#search_item', as: :search_item_sale
-  get 'sales/:id/search_client' => 'sales#search_client', as: :search_client_sale
   get 'sales/:sale_id/new_select/:id' => 'items#new_select', as: :new_select_sale_item
   get 'sales/:sale_id/select_client/:id' => 'sales#select_client', as: :select_client_sale
   get 'sales/:id/cancel' => 'sales#cancel', as: :cancel_sale
@@ -39,14 +38,9 @@ Rails.application.routes.draw do
   	resources :items
   end
 
-  get 'clients/search' => 'clients#search', as: :search_clients
   get 'clients/:id' => 'clients#show'
 
   get 'products/search' => 'products#search', as: :search_products
-  get 'products/cell' => 'products#cell'
-  get 'products/eletronic' => 'products#eletronic'
-  get 'products/part' => 'products#part'
-  get 'products/accessory' => 'products#accessory'
   get 'products/category' => 'products#category'
   get 'products/report_products' => 'products#report_products'
   get 'products/inventory' => 'products#inventory'
@@ -56,7 +50,6 @@ Rails.application.routes.draw do
   get 'products/:id' => 'products#show'
 
   get 'sales/:id/client' => 'sales#client', as: :client_sale
-  post 'sales/:id/select' => 'sales#select', as: :select_sale
   post 'sales/:sale_id/items/:id' => 'items#add', as: :add_sale_item
 
   get 'expenses/advance' => 'expenses#advance', as: :advance_expense

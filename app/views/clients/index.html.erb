@@ -2,11 +2,37 @@
 	<span>Meus Clientes</span>
 </div>
 
-<%= form_tag search_clients_path, method: :get, class: 'navbar-form navbar-right' do %>
-	<div>
-		<%= text_field_tag :name, @name, class: 'form-control' %>
-		<%= button_to 'Buscar', nil, class: 'btn btn-success' %>
-	</div>
-<% end %> 
+<input type="text" id="search" placeholder="Buscar Cliente" style="float: right; margin-bottom: 1em;">
 
-<%= render 'clients' %>
+<div>
+	<table class="table table-bordered">
+		<thead>
+			<th>Nome</th>
+			<th>CPF/RG</th>
+			<th>Telefone</th>
+			<th>Endereço</th>
+			<th>Bairro</th>
+			<th>Cidade</th>
+		</thead>
+		<% @clients.each do |client| %>
+		<tbody id="table">
+			<tr>
+				<td><%= client.name %></td>
+				<td><%= client.cpf %></td>
+				<td><%= client.fone %></td>
+				<td><%= client.address %></td>
+				<td><%= client.district %></td>
+				<td><%= client.city %></td>
+				<td class="options-btn">
+					<%= link_to client_path(client) do %>
+						<i class="fa fa-eye"></i>
+					<% end %>
+					<%= link_to edit_client_path(client) do %>
+						<i class="fa fa-edit"></i>
+					<% end %>
+				</td>
+			</tr>
+		</tbody>
+		<% end %>
+	</table>
+</div>

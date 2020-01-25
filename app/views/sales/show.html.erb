@@ -15,15 +15,27 @@
 </div>
 
 <div class="options">
-	<span><input type='button' value='Voltar' onclick='history.go(-1)' class="btn btn-default" /></span>
-	<% if admin?(current_user) %>
-		<span><%= link_to 'Editar', edit_sale_path(@sale), class: 'btn btn-warning' %></span>
-		<span><%= link_to 'Excluir', cancel_sale_path(@sale), class: 'btn btn-danger', data:{confirm: 'Deseja Excluir a Venda?'} %></span>
-		<% if @sale.status == 'aberta' %>
-			<span><%= link_to 'Finalizar O.S', finish_sale_path(@sale), class: 'btn btn-success' %></span>
+	<span>
+		<a href="" onclick="history.go(-1)">
+			<i class="fa fa-arrow-left btn-icon"></i>
+		</a>
+		<% if admin?(current_user) %>
+			<%= link_to edit_sale_path(@sale) do %>
+				<i class="fa fa-edit btn-icon"></i>
+			<% end %>
+			<%= link_to cancel_sale_path(@sale), data:{confirm: 'Deseja Excluir a Venda?'} do %>
+				<i class="fa fa-trash btn-icon"></i>
+			<% end %>
+			<% if @sale.status == 'aberta' %>
+				<%= link_to finish_sale_path(@sale) do %>
+					<i class="fa fa-check btn-icon"></i>
+				<% end %>
+			<% end %>
 		<% end %>
-	<% end %>
-	<span><%= link_to (image_tag 'imprimir.png', :width => '40px', :height => '40px'), "#{@sale.id}.pdf" %></span>
+		<%= link_to "#{@sale.id}.pdf" do %>
+			<i class="fa fa-print btn-icon"></i>
+		<% end %>
+	</span>
 </div>
 
 <div class="form-new">

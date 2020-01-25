@@ -19,7 +19,11 @@
 					<td><%= number_to_currency item.product.price %></td>
 					<td><%= number_to_currency item.discount %>	</td>
 					<td><%= number_to_currency item.price %></td>
-					<td id="hide"><%= button_to 'Remover', sale_item_path(@sale, item), method: :delete, class: 'btn btn-danger' %></td>
+					<td id="hide" class="options-btn">
+						<%= link_to sale_item_path(@sale, item), method: :delete, data:{confirm: 'Remover este item?'} do %>
+							<i class="fa fa-close btn-icon"></i>
+						<% end %>
+					</td>
 				</tr>
 			</tbody>
 		<% end %>

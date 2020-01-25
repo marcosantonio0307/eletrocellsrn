@@ -1,6 +1,9 @@
 <div class="options">
-	<span><%= link_to 'Voltar', clients_path, class: 'btn btn-default' %></span>
-	<span><%= link_to 'Editar', edit_client_path(@client), class: 'btn btn-warning' %></span>	
+	<span>
+		<%= link_to clients_path do %>
+			<i class="fa fa-arrow-left btn-icon"></i>
+		<% end %>
+	</span>	
 </div>
 
 <%= form_for @client do |f| %>

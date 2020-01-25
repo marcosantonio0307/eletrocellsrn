@@ -19,7 +19,7 @@ class SalesController < ApplicationController
 		@sales = Sale.where(category: 'service', status: 'aberta')
 		@report = false
 		@title = 'O.S Abertas'
-		render :index
+		render :sales_day
 	end
 
 	def new
@@ -60,23 +60,7 @@ class SalesController < ApplicationController
 
 	def client
 		@sale = Sale.find(params[:id])
-	end
-	
-	def select
-		@sale = Sale.find(params[:id])
-		@cpf = params[:cpf]
-
-		if @cpf.empty?
-			render :client
-		else
-			client = Client.where "cpf like ?", "%#{@cpf}%"
-			if client.empty?
-				render :client
-			else
-				@sale.update(client_id: client.first.id)
-				redirect_to edit_sale_path(@sale)
-			end
-		end
+		@clients = Client.all
 	end
 
 	def select_client
@@ -125,7 +109,7 @@ class SalesController < ApplicationController
 	def finish
 		@sale = Sale.find(params[:id])
 		@sale.update(status: 'fechada')
-		redirect_to sales_services_path, notice: 'O.S finalizada com Sucesso!'
+		redirect_to sales_services_day_path, notice: 'O.S finalizada com Sucesso!'
 	end
 
 	def filter_date
@@ -202,18 +186,9 @@ class SalesController < ApplicationController
 		render :sales_day
 	end
 
-	def search_client
-		@sale = Sale.find(params[:id])
-		@name = params[:name]
-		@name.upcase!
-		@clients = Client.where "name like ?", "%#{@name}%"
-	end
-
 	def search_item
 		@sale = Sale.find(params[:id])
-		@name = params[:name]
-		@name.upcase!
-		@products = Product.where "name like ?", "%#{@name}%"
+		@products = Product.all
 	end
 
 	def cancel

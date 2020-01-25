@@ -10,26 +10,43 @@
 			<span style="visibility: hidden;"><%= text_field_tag :total, @current_cash %></span>
 			<span><%= button_to 'Fechar Caixa', nil, class: 'btn btn-primary', data:{confirm: 'Finalizar Caixa do Dia? OBS: Caixa só deve ser fechado ao fim do Expediente!'} %></span>
 			<% end %>
-		</div>			
+		</div>
+	<% else %>
+		<div class="nav-right">
+			<span>
+				<%= link_to 'Reabrir Caixa', cash_reopen_path, data:{confirm: 'Deseja Reabrir o Caixa?'}, class: 'btn btn-primary' %>
+			</span>
+			
+		</div>
 	<% end %>
 
-	<div class="report-salesman">
-		<h4>Saldo: <% if @current_cash != nil %> <%= number_to_currency @current_cash %> <% end %></h4>
-	</div>
-
-	<div class="report-salesman", style="background: #CEECF5;">
-		<h5>Valor Inicial: <%= number_to_currency @begin_value %></h5>
-	</div>
-
-	<div class="report-salesman", style="background: #BCF5A9;">
-		<h5>Vendas: <%= number_to_currency @total_cash_sales %></h5>
-	</div>
-
-	<div class="report-salesman", style="background: #BCF5A9;">
-		<h5>Serviços: <%= number_to_currency @total_cash_services %></h5>
-	</div>
-
-	<div class="report-salesman", style="background: #F5A9A9;">
-		<h5>Saídas: <%= number_to_currency @total_cash_outflows %></h5>
+	<div class="report-cash">
+		<div class="list-cash">
+			<p style="color: #CEECF5;">VALOR INICIAL: <%= number_to_currency @begin_value %></p>
+			<p style="color: #BCF5A9;">VENDAS: <%= number_to_currency @total_cash_sales %></p>
+			<p style="color: #F2F5A9">SERVIÇOS: <%= number_to_currency @total_cash_services %></p>
+			<p style="color: #F5A9A9;">SAÍDAS: <%= number_to_currency @total_cash_outflows %></p>
+		</div>
+		<div class="total-cash" id="total-cash">
+			<h2>SALDO</h2>
+			<p>
+				<% if @current_cash != nil %>
+					<%= number_to_currency @current_cash %>
+				<% end %>
+				<%= hidden_field_tag :balance, @current_cash, id: 'balance' %>
+			</p>
+		</div>
 	</div>
 </div>
+
+<script>
+	divTotal = document.getElementById('total-cash');
+	balance = document.getElementById('balance');
+	balance = Number(balance.value);
+
+	if (balance > 0) {
+		divTotal.style.background = "#81F79F";
+	} else {
+		divTotal.style.background = "#F5A9A9";
+	}
+</script>

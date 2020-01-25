@@ -8,14 +8,18 @@
 			<th>Tipo</th>
 		</thead>
 		<% @products.each do |product| %>
-		<tbody>
+		<tbody id="table">
 			<tr>
 				<td><%= product.sku %></td>
 				<td><%= product.name %></td>
 				<td><%= product.amount %></td>
 				<td><%= number_to_currency product.price %></td>
 				<td><%= product.category %></td>
-				<td><%= link_to 'Exibir', product_path(product), class: 'btn btn-primary' %></td>
+				<td class="options-btn">
+					<%= link_to product_path(product) do %>
+						<i class="fa fa-eye"></i>
+					<% end %>		
+				</td>
 			</tr>
 		</tbody>
 		<% end %>

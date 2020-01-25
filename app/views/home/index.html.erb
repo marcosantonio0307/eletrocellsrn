@@ -1,10 +1,34 @@
-<div class="home_bottons">
-	<%= link_to(image_tag("cliente.png", :width => "100px"), new_client_path) %>
-	<%= link_to(image_tag("venda.png", :width => "70px"), new_sale_path, data:{confirm: 'Deseja Efetuar uma Nova Venda?'}) %>
-	<%= link_to(image_tag("despesa.png", :width => "70px"), new_expense_path) %>
-	<div>
-		<%= link_to "Novo Cliente", root_path %>
-		<%= link_to "Nova Venda", root_path %>
-		<a style="margin-left: -13.5em;"><%= link_to "Nova Despesa", root_path %></a>
+<div class="home-bottons">
+	<div class="col-lg-3 col-md-3">
+		<%= link_to new_client_path do %>
+			<div class="btn-home">
+				<i class="fa fa-user-plus"></i>
+				<p>NOVO CLIENTE</p>
+			</div>
+		<% end %>
+	</div>
+	<div class="col-lg-3 col-md-3">
+		<%= link_to new_sale_path, data:{confirm: 'Deseja Efetuar uma Nova Venda?'} do %>
+			<div class="btn-home">
+		 		<i class="fa fa-credit-card"></i>
+		 		<p>NOVA VENDA</p>
+			</div>
+		<% end %>
+	</div>
+	<div class="col-lg-3 col-md-3">
+		<%= link_to new_expense_path do %>
+			<div class="btn-home">
+				<i class="fa fa-arrow-down"></i>
+				<p>NOVA DESPESA</p>
+			</div>
+		<% end %>
+	</div>
+	<div class="col-lg-3 col-md-3">
+		<%= link_to new_service_sale_path, data:{confirm: 'Deseja Abrir uma Nova O.S?'} do %>
+			<div class="btn-home">
+				<i class="fa fa-pencil"></i>
+				<p>NOVA O.S</p>
+			</div>
+		<% end %>
 	</div>
 </div>

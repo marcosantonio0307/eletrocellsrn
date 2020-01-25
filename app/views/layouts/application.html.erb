@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Cesarcell - Loja 2</title>
+    <title>Eletro Cell</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -11,30 +11,13 @@
 
   <body>
 
-    <div id="barra_de_logo">
-
-      <div style="float: left; margin: 0.5em 2em; font-size: 1.3em;">
-        <p>Loja 02</p>
-      </div>
-
-      <p class="logo"><%= image_tag "logo.png", :width => "250px", :height => "100px"%></p>
-
-      <div class="info-login">
-        <% if signed_in? %>
-          <%= link_to 'Sair', destroy_user_session_path, method: :delete, class: "btn btn-default", data:{confirm: 'Lembre-se de Fechar o Caixa ao Fim do Dia =)'} %>
-          <span class="current_user"><%= current_user.email%></span>
-          <%= image_tag "login.png", :width => "30px", :height => "30px" %>
-        <% end %>
-      </div>
-    </div>
-
     <input type="checkbox" id="bt_menu">
     <label for="bt_menu">&#9776;</label>
 
-    <nav class="menus"> <!-- Menu de Navegação -->
+    <div class="menus"> <!-- Menu de Navegação -->
       <ul>
-        <div class="apple">
-          <%= link_to (image_tag 'apple.png', :width => "35px", :height => "30px"), root_path %>
+        <div class="logo">
+          <%= link_to (image_tag 'logo.png', :width => "100px", :height => "20px"), root_path %>
         </div>
 
         <% if signed_in? %>
@@ -54,7 +37,6 @@
             <li><%= link_to 'Despesas do Dia', expenses_expenses_day_path %></li>
             <% if admin?(current_user) %>
               <li><%= link_to 'Caixa do Dia', cash_index_path %></li>
-              <li><%= link_to 'Reabrir Caixa', cash_reopen_path, data:{confirm: 'Deseja Reabrir o Caixa?'} %></li>
             <% end %>
           </ul>
         </li>
@@ -63,15 +45,11 @@
             <% if admin?(current_user) %>
               <li><%= link_to 'Novo Produto', new_product_path %></li>
             <% end %>
-            <li><%= link_to 'Celulares', products_cell_path %></li>
-            <li><%= link_to 'Eletrônicos', products_eletronic_path %></li>
-            <li><%= link_to 'Peças', products_part_path %></li>
-            <li><%= link_to 'Acessórios', products_accessory_path %></li>
-            <li><%= link_to 'Todos Produtos', products_path %></li>
+            <li><%= link_to 'Produtos', products_path %></li>
             <li><%= link_to 'Inventario', products_inventory_path %></li>
           </ul>
         </li>
-        <li><a href="">Ordens de Serviço</a>
+        <li><a href="">O. de Serviço</a>
           <ul>
             <li><%= link_to 'Nova O.S', new_service_sale_path, data:{confirm: 'Deseja Abrir uma Nova O.S?'} %></li>
             <li><%= link_to 'O.S Abertas', sales_opens_path %></li>
@@ -106,11 +84,18 @@
         </li>
         <% end %>
       </ul>
+    </div> <!-- fim do Menu -->
 
-    </nav> <!-- fim do Menu -->
+    <div class="info-login">
+      <% if signed_in? %>
+        <%= link_to destroy_user_session_path, method: :delete, data:{confirm: 'Lembre-se de Fechar o Caixa ao Fim do Dia =)'} do %>
+          <i class="fa fa-sign-out btn-sign-out"></i>
+        <% end %>
+        <span class="current_user"><%= current_user.email%></span>
+      <% end %>
+    </div>
 
     <div class="container-primary">
-
       <% if flash[:notice] %>
         <div class="alert alert-info" role="alert">
           <%= flash[:notice] %>
@@ -120,8 +105,10 @@
     </div>
 
     <footer class="footer">
-      <p style="line-height: 50px; font-size: 1.5em; margin-bottom: 0px">Loja 02 - Cesar Cell</p>
-      <p>&copy; Todos os direitos reservados</p>
+      <p style="height: 50px; line-height: 50px; font-size: 1.5em; margin-bottom: 0px; background: #2f2f2f;">Eletro Cell</p>
+      <p style="background: #1c1c1c; height: 70px; line-height: 70px;">
+      &copy; Todos os direitos reservados | m.dev - web developments
+      </p>
     </footer>
 
   </body>

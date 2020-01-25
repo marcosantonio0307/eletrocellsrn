@@ -5,34 +5,6 @@ class ProductsController < ApplicationController
 		@products = Product.all
 		@products.order! :name
 	end
-
-	def cell
-		@title = 'Celulares'
-		@products = Product.where "category like ?", "celular"
-		@products.order! :name
-		render :index
-	end
-
-	def eletronic
-		@title = 'Eletrônicos'
-		@products = Product.where "category like ?", "eletronico"
-		@products.order! :name
-		render :index
-	end
-
-	def part
-		@title = 'Peças'
-		@products = Product.where "category like ?", 'peca'
-		@products.order! :name
-		render :index
-	end
-
-	def accessory
-		@title = 'Acessórios'
-		@products = Product.where "category like ?", 'acessorio'
-		@products.order! :name
-		render :index
-	end
 	
 	def new
 		@product = Product.new

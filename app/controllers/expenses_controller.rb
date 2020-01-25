@@ -58,6 +58,7 @@ class ExpensesController < ApplicationController
 
 	def edit
 		@expense = Expense.find(params[:id])
+		@category = @expense.category
 	end
 
 	def update
@@ -65,7 +66,7 @@ class ExpensesController < ApplicationController
 		@expense = Expense.find(params[:id])
 
 		@expense.update values
-		redirect_to expense_path(@expense), notice: 'Despesa Alterada com Sucesso!'
+		redirect_to expenses_expenses_day_path, notice: 'Despesa Alterada com Sucesso!'
 	end
 
 	def filter_date

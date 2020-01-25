@@ -8,21 +8,19 @@
 		<%= label_tag :cliente %>
 		<%= text_field_tag :client, @sale.client.name, class: 'form-control', :disabled=>true %>
 	</div><br>
-
-	<div style="float: left;">
-		<%= form_tag new_sale_item_path(@sale), method: :get do %>
-			<%= label_tag :sku %>
-			<%= text_field_tag :sku, nil %>
-			<%= button_to 'Incluir', nil, class: 'btn btn-primary' %>
+	<div style="float: right; margin-left: 5px; margin-top: 3px; margin-bottom: 10px;">
+		<%= link_to search_item_sale_path(@sale) do %>
+			<i class="fa fa-search btn-icon"></i>
 		<% end %>
 	</div>
-
-	<div style="float: right; margin-bottom: 0.5em;">
-		<%= form_tag search_item_sale_path(@sale), method: :get do %>
-			<%= text_field_tag :name, @name %>
-			<%= button_to 'Buscar', nil, class: 'btn btn-success' %>
+	<div style="float: right;">
+		<%= form_tag new_sale_item_path(@sale), method: :get do %>
+			<%= text_field_tag :sku, nil, placeholder: 'Código do produto' %>
+			<%= button_to do %>
+				<i class="fa fa-check"></i>
+			<% end %>
 		<% end %>
-	</div><br>
+	</div>
 
 	<%= render 'items' %>
 

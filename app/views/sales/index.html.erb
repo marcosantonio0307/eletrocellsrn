@@ -2,19 +2,16 @@
 	<span><%= @title %></span>
 </div>
 
-<%= form_tag sales_search_path, method: :get, class: 'navbar-form navbar-left' do %>
-	<div>
-		<%= text_field_tag :client, @name, class: 'form-control' %>
-		<%= button_to 'Buscar', nil, class: 'btn btn-success' %>
-	</div>
-<% end %>
+<input type="text" id="search" placeholder="Buscar" style="float: left;">
 
 <%= form_tag sales_filter_date_path, method: :get do %>
 	<div class="nav-right">
-		<span style="visibility: hidden;"><%= text_field_tag :category, @sales.first.category %></span>
-		<%= date_field_tag :begin_date, @begin_date %>
-		<%= date_field_tag :end_date, @end_date %>
-		<%= button_to 'Filtrar', nil, class: 'btn btn-success' %>
+		<span>
+			<%= hidden_field_tag :category, @sales.first.category %>
+			<%= date_field_tag :begin_date, @begin_date %>
+			<%= date_field_tag :end_date, @end_date %>
+			<%= button_to 'Filtrar', nil, class: 'btn btn-success' %>
+		</span>
 	</div>	
 <% end %>
 

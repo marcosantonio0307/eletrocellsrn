@@ -5,8 +5,18 @@
 		<h3 align="center">Deseja Imprimir o O.S?</h3>
 	<% end %>
 	<div align="center">
-		<%= link_to :sim, ("/sales/#{@sale.id}.pdf"), method: :get, class: 'btn btn-success' %>
+		<%= link_to ("/sales/#{@sale.id}.pdf"), method: :get do %>
+			<i class="fa fa-check btn-icon"></i>
+		<% end %>
 		<span style="margin: 0 0.5em;"></span>
-		<%= link_to :nao, sales_sales_day_path, class: 'btn btn-danger' %>
+		<% if @sale.category == 'sale' %>
+			<%= link_to sales_sales_day_path do %>
+				<i class="fa fa-close btn-icon"></i>
+			<% end %>
+		<% else %>
+			<%= link_to sales_opens_path do %>
+				<i class="fa fa-close btn-icon"></i>
+			<% end %>
+		<% end %>
 	</div>
 </div>

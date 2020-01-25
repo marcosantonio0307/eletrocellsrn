@@ -1,8 +1,11 @@
 <div class="options">
-	<%= link_to 'Voltar', expenses_path, class: 'btn btn-default' %>
 	<% if admin?(current_user) %>
-		<%= link_to 'Editar', edit_expense_path(@expense), class: 'btn btn-warning' %>
-		<%= link_to 'Excluir', expense_path(@expense), method: :delete, class: 'btn btn-danger' %>
+		<%= link_to edit_expense_path(@expense) do %>
+			<i class="fa fa-edit btn-icon"></i>
+		<% end %>
+		<%= link_to expense_path(@expense), method: :delete, data:{confirm: 'Excluír esta despesa?'} do %>
+			<i class="fa fa-close btn-icon"></i>
+		<% end %>
 	<% end %>
 </div>
 
