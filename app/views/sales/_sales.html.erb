@@ -42,3 +42,16 @@
 	<%= label_tag :total %>
 	<%= text_field_tag :total, number_to_currency(@total), :disabled=>true %>
 </div>
+
+<script>
+	$(function(){
+	    $("#search").keyup(function(){
+	        var texto = $(this).val();
+	        $("#table tr").css("display", "table-row");
+	        $("#table tr").each(function(){
+	            if($(this).text().toUpperCase().indexOf(texto.toUpperCase()) < 0)
+					   $(this).css("display", "none");
+	        });
+	    });
+	});
+</script>

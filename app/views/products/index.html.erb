@@ -5,3 +5,16 @@
 <input type="text" id="search" placeholder="Buscar Produto" style="float: right; margin-bottom: 1em;">
 
 <%= render 'products' %>
+
+<script>
+	$(function(){
+	    $("#search").keyup(function(){
+	        var texto = $(this).val();
+	        $("#table tr").css("display", "table-row");
+	        $("#table tr").each(function(){
+	            if($(this).text().toUpperCase().indexOf(texto.toUpperCase()) < 0)
+					   $(this).css("display", "none");
+	        });
+	    });
+	});
+</script>

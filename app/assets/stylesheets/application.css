@@ -169,18 +169,28 @@ label[for="bt_menu"] {
 /* area de login */
 
 .login_area {
-	width: 35%;
+	width: 60%;
+	height: 200px;
 	margin: 0 auto;
+	margin-top: 6em;
 }
 
-.tela_login {
-	margin: 1em auto;
-	padding-left: 40%;
+.banner-login {
+	width: 60%;
+	height: 200px;
+	float: left;
+	background: #2f2f2f;
 }
 
-.form_login {
-	margin: 0px auto;
-	padding-left: 25%;
+.banner-login img {
+	width: 90%;
+	margin: 50px 20px;
+}
+
+.form-login {
+	float: left;
+	margin-left: 30px;
+	margin-top: 10px;
 }
 
 .info-login {
