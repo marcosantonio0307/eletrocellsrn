@@ -1,21 +1,19 @@
 <div class="login_area">
-  <div class="tela_login">
 
-      <%= image_tag "login.png", :width => "80px", :height => "80px" %>
-
-      <h2>Entrar  </h2>
+  <div class="banner-login">
+    <%= image_tag 'logo.png' %>
   </div>
 
-  <div class="form_login">
+  <div class="form-login">
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="field">
-          <%= f.label :usuario %><br />
+          <i class="fa fa-user" style="font-size: 1.1em;"></i> <%= f.label :usuario %><br />
           <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
         </div>
 
         <div class="field">
-          <%= f.label :senha %><br />
-          <%= f.password_field :password, autocomplete: "current-password" %>
+          <i class="fa fa-lock" style="font-size: 1.1em;"></i> <%= f.label :senha %><br />
+          <%= f.password_field :password, autocomplete: "current-password" %> 
         </div>
 
         <% if devise_mapping.rememberable? %>
@@ -26,7 +24,7 @@
         <% end %>
 
         <div>
-          <p style=" margin-top: 1em; margin-left: 5em;"><%= f.submit "Entrar", class: "btn btn-success" %></p>
+          <%= f.submit "Entrar", class: "btn btn-success" %>
         </div>
       <% end %>
 
