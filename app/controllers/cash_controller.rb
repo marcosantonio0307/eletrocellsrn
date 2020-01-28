@@ -14,7 +14,7 @@ class CashController < ApplicationController
 		if Cash.last != nil
 			@begin_value = Cash.last.next_begin
 		else
-			@begin_value = 200
+			@begin_value = 0
 		end
 
 		cash_sales.each do |cash|
